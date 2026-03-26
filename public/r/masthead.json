@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "masthead",
+  "title": "Masthead",
+  "description": "Newspaper header with title, date, volume/issue, double-rule borders, and serif typography.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/newspapercn/custom/masthead.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\ninterface MastheadProps extends React.HTMLAttributes<HTMLElement> {\n  title: string;\n  tagline?: string;\n  date?: Date | string;\n  issueNumber?: string | number;\n  volume?: string | number;\n  logo?: React.ReactNode;\n  variant?: \"broadsheet\" | \"tabloid\" | \"compact\";\n}\n\nfunction formatDate(date: Date | string): string {\n  const d = typeof date === \"string\" ? new Date(date) : date;\n  return d.toLocaleDateString(\"en-US\", {\n    weekday: \"long\",\n    year: \"numeric\",\n    month: \"long\",\n    day: \"numeric\",\n  });\n}\n\nconst Masthead = React.forwardRef<HTMLElement, MastheadProps>(\n  (\n    {\n      className,\n      title,\n      tagline,\n      date,\n      issueNumber,\n      volume,\n      logo,\n      variant = \"broadsheet\",\n      ...props\n    },\n    ref\n  ) => {\n    const displayDate = date ? formatDate(date) : formatDate(new Date());\n\n    return (\n      <header\n        ref={ref}\n        className={cn(\n          \"w-full border-y-[3px] border-double border-foreground\",\n          variant === \"broadsheet\" && \"py-6\",\n          variant === \"tabloid\" && \"py-4\",\n          variant === \"compact\" && \"py-2\",\n          className\n        )}\n        {...props}\n      >\n        {/* Top meta line */}\n        <div className=\"flex items-center justify-between text-xs font-sans text-muted-foreground tracking-wider uppercase px-4\">\n          <span>{displayDate}</span>\n          <span>\n            {volume && `Vol. ${volume}`}\n            {volume && issueNumber && \" — \"}\n            {issueNumber && `No. ${issueNumber}`}\n          </span>\n        </div>\n\n        {/* Thin rule */}\n        <div className=\"border-t border-foreground/20 my-2 mx-4\" />\n\n        {/* Title block */}\n        <div className=\"flex items-center justify-center gap-4 px-4\">\n          {logo && <div className=\"shrink-0\">{logo}</div>}\n          <div className=\"text-center\">\n            <h1\n              className={cn(\n                \"font-serif font-black tracking-wide uppercase leading-none\",\n                variant === \"broadsheet\" && \"text-5xl md:text-7xl\",\n                variant === \"tabloid\" && \"text-4xl md:text-5xl\",\n                variant === \"compact\" && \"text-2xl md:text-3xl\"\n              )}\n            >\n              {title}\n            </h1>\n            {tagline && (\n              <p className=\"font-body italic text-muted-foreground mt-1 text-sm md:text-base\">\n                {tagline}\n              </p>\n            )}\n          </div>\n        </div>\n\n        {/* Bottom rule */}\n        <div className=\"border-t border-foreground/20 mt-2 mx-4\" />\n      </header>\n    );\n  }\n);\n\nMasthead.displayName = \"Masthead\";\n\nexport { Masthead, type MastheadProps };\n",
+      "type": "registry:component",
+      "target": "components/newspapercn/masthead.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

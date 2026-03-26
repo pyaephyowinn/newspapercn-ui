@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "column-layout",
+  "title": "Column Layout",
+  "description": "Multi-column newspaper grid with column rules, drop caps, justified text, and responsive columns.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/newspapercn/custom/column-layout.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\ninterface ColumnLayoutProps extends React.HTMLAttributes<HTMLDivElement> {\n  columns?: 1 | 2 | 3 | 4;\n  gap?: \"sm\" | \"md\" | \"lg\";\n  rule?: boolean | \"thin\" | \"thick\" | \"double\";\n  dropCap?: boolean;\n  justified?: boolean;\n  balanceColumns?: boolean;\n}\n\ninterface ColumnSpanProps extends React.HTMLAttributes<HTMLDivElement> {\n  span?: \"all\" | \"none\";\n}\n\nconst gapSizes = {\n  sm: \"1rem\",\n  md: \"1.5rem\",\n  lg: \"2rem\",\n} as const;\n\nconst ruleStyles = {\n  thin: \"1px solid oklch(0.40 0.02 60)\",\n  thick: \"2px solid oklch(0.40 0.02 60)\",\n  double: \"3px double oklch(0.40 0.02 60)\",\n} as const;\n\nconst ColumnLayout = React.forwardRef<HTMLDivElement, ColumnLayoutProps>(\n  (\n    {\n      className,\n      columns = 2,\n      gap = \"md\",\n      rule = true,\n      dropCap = false,\n      justified = true,\n      balanceColumns = true,\n      style,\n      children,\n      ...props\n    },\n    ref\n  ) => {\n    const ruleValue =\n      rule === true\n        ? ruleStyles.thin\n        : rule === false\n          ? \"none\"\n          : ruleStyles[rule];\n\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          \"font-body leading-relaxed\",\n          justified && \"text-justify [hyphens:auto]\",\n          dropCap &&\n            \"[&>p:first-of-type]:first-letter:text-5xl [&>p:first-of-type]:first-letter:font-serif [&>p:first-of-type]:first-letter:font-bold [&>p:first-of-type]:first-letter:float-left [&>p:first-of-type]:first-letter:mr-2 [&>p:first-of-type]:first-letter:leading-none [&>p:first-of-type]:first-letter:mt-1\",\n          className\n        )}\n        style={{\n          columnCount: columns,\n          columnGap: gapSizes[gap],\n          columnRule: ruleValue,\n          columnFill: balanceColumns ? \"balance\" : \"auto\",\n          ...style,\n        }}\n        {...props}\n      >\n        {children}\n      </div>\n    );\n  }\n);\n\nColumnLayout.displayName = \"ColumnLayout\";\n\nconst ColumnSpan = React.forwardRef<HTMLDivElement, ColumnSpanProps>(\n  ({ className, span = \"all\", children, ...props }, ref) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(className)}\n        style={{\n          columnSpan: span,\n        }}\n        {...props}\n      >\n        {children}\n      </div>\n    );\n  }\n);\n\nColumnSpan.displayName = \"ColumnSpan\";\n\nexport { ColumnLayout, ColumnSpan, type ColumnLayoutProps, type ColumnSpanProps };\n",
+      "type": "registry:component",
+      "target": "components/newspapercn/column-layout.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

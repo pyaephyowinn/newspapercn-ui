@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "headline-banner",
+  "title": "Headline Banner",
+  "description": "BIG NEWS! breaking-news alert banner with severity levels (breaking/update/bulletin) and dismiss.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/newspapercn/custom/headline-banner.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { X } from \"lucide-react\";\n\ninterface HeadlineBannerProps extends React.HTMLAttributes<HTMLDivElement> {\n  headline: string;\n  prefix?: string;\n  variant?: \"banner\" | \"toast\" | \"ticker\";\n  severity?: \"breaking\" | \"update\" | \"bulletin\";\n  icon?: React.ReactNode;\n  dismissible?: boolean;\n  onDismiss?: () => void;\n}\n\nconst severityStyles = {\n  breaking: \"bg-accent text-accent-foreground\",\n  update: \"bg-primary text-primary-foreground\",\n  bulletin: \"bg-secondary text-secondary-foreground\",\n} as const;\n\nconst HeadlineBanner = React.forwardRef<HTMLDivElement, HeadlineBannerProps>(\n  (\n    {\n      className,\n      headline,\n      prefix = \"BIG NEWS!\",\n      variant = \"banner\",\n      severity = \"breaking\",\n      icon,\n      dismissible = false,\n      onDismiss,\n      ...props\n    },\n    ref\n  ) => {\n    return (\n      <div\n        ref={ref}\n        role=\"alert\"\n        className={cn(\n          \"relative overflow-hidden font-serif\",\n          severityStyles[severity],\n          variant === \"banner\" && \"w-full px-4 py-3\",\n          variant === \"toast\" &&\n            \"max-w-md px-4 py-3 shadow-lg border border-border\",\n          variant === \"ticker\" &&\n            \"w-full px-4 py-2 text-sm overflow-hidden\",\n          \"animate-in slide-in-from-top duration-500\",\n          className\n        )}\n        {...props}\n      >\n        <div\n          className={cn(\n            \"flex items-center gap-3\",\n            variant === \"ticker\" && \"animate-[ticker_20s_linear_infinite]\"\n          )}\n        >\n          {/* Icon */}\n          {icon && <span className=\"shrink-0\">{icon}</span>}\n\n          {/* Content */}\n          <div className=\"flex items-baseline gap-2 flex-1 min-w-0\">\n            <span className=\"font-black text-lg tracking-wide uppercase shrink-0 -rotate-1\">\n              {prefix}\n            </span>\n            <span\n              className={cn(\n                \"font-bold truncate\",\n                variant === \"ticker\" && \"whitespace-nowrap\"\n              )}\n            >\n              {headline}\n            </span>\n          </div>\n\n          {/* Dismiss button */}\n          {dismissible && (\n            <button\n              onClick={onDismiss}\n              className=\"shrink-0 p-1 rounded-sm opacity-70 hover:opacity-100 transition-opacity\"\n              aria-label=\"Dismiss\"\n            >\n              <X className=\"h-4 w-4\" />\n            </button>\n          )}\n        </div>\n      </div>\n    );\n  }\n);\n\nHeadlineBanner.displayName = \"HeadlineBanner\";\n\nexport { HeadlineBanner, type HeadlineBannerProps };\n",
+      "type": "registry:component",
+      "target": "components/newspapercn/headline-banner.tsx"
+    }
+  ],
+  "type": "registry:block"
+}
