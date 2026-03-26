@@ -111,6 +111,66 @@
           "target": "components/newspapercn/theme-toggle.tsx"
         }
       ]
+    },
+    {
+      "name": "log-pose-nav",
+      "type": "registry:block",
+      "title": "Log Pose Nav",
+      "description": "Navigation component styled like a Log Pose compass with compass and linear variants.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/newspapercn/custom/log-pose-nav.tsx",
+          "type": "registry:component",
+          "target": "components/newspapercn/log-pose-nav.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bounty-table",
+      "type": "registry:block",
+      "title": "Bounty Table",
+      "description": "Data table for pirate bounties with Berry currency formatting, rank medals, and status badges.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/newspapercn/custom/bounty-table.tsx",
+          "type": "registry:component",
+          "target": "components/newspapercn/bounty-table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "den-den-mushi",
+      "type": "registry:block",
+      "title": "Den Den Mushi",
+      "description": "Chat/communication component styled like a Den Den Mushi snail phone with chat, single, and calling variants.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/newspapercn/custom/den-den-mushi.tsx",
+          "type": "registry:component",
+          "target": "components/newspapercn/den-den-mushi.tsx"
+        }
+      ]
+    },
+    {
+      "name": "poneglyph-code",
+      "type": "registry:block",
+      "title": "Poneglyph Code",
+      "description": "Code block styled like an ancient Poneglyph stone tablet with glow text, copy button, and decipher toggle.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/newspapercn/custom/poneglyph-code.tsx",
+          "type": "registry:component",
+          "target": "components/newspapercn/poneglyph-code.tsx"
+        }
+      ]
     }
   ]
 }

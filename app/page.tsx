@@ -5,6 +5,10 @@ import {
 } from "@/registry/newspapercn/custom/headline-banner";
 import { ColumnLayout } from "@/registry/newspapercn/custom/column-layout";
 import { NewsCooBadge } from "@/registry/newspapercn/custom/news-coo-badge";
+import { LogPoseNav } from "@/registry/newspapercn/custom/log-pose-nav";
+import { BountyTable } from "@/registry/newspapercn/custom/bounty-table";
+import { DenDenMushi } from "@/registry/newspapercn/custom/den-den-mushi";
+import { PoneglyphCode } from "@/registry/newspapercn/custom/poneglyph-code";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -506,6 +510,131 @@ export default function Home() {
             prefix="BULLETIN"
           />
         </section>
+
+        <Separator variant="ornamental" />
+
+        {/* ── Section: Log Pose Navigation ── */}
+        <section className="space-y-6">
+          <h3 className="text-2xl mb-4">Log Pose Navigation</h3>
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Compass variant</p>
+              <LogPoseNav
+                variant="compass"
+                items={[
+                  { label: "Alabasta", href: "#", active: false },
+                  { label: "Water 7", href: "#", active: false },
+                  { label: "Sabaody", href: "#", active: true },
+                  { label: "Fish-Man", href: "#", active: false },
+                  { label: "Dressrosa", href: "#", active: false },
+                  { label: "Wano", href: "#", active: false },
+                ]}
+              />
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Linear variant</p>
+              <LogPoseNav
+                variant="linear"
+                items={[
+                  { label: "East Blue", href: "#" },
+                  { label: "Grand Line", href: "#" },
+                  { label: "New World", href: "#", active: true },
+                  { label: "Laugh Tale", href: "#" },
+                ]}
+              />
+            </div>
+          </div>
+        </section>
+
+        <Separator variant="ornamental" />
+
+        {/* ── Section: Bounty Table ── */}
+        <section>
+          <BountyTable
+            title="Grand Line Most Wanted"
+            entries={[
+              { name: "Monkey D. Luffy", epithet: "Straw Hat", crew: "Straw Hat Pirates", bounty: 3000000000, status: "increased" },
+              { name: "Trafalgar Law", epithet: "Surgeon of Death", crew: "Heart Pirates", bounty: 3000000000, status: "new" },
+              { name: "Eustass Kid", epithet: "Captain", crew: "Kid Pirates", bounty: 3000000000, status: "new" },
+              { name: "Buggy", epithet: "The Genius Jester", crew: "Cross Guild", bounty: 3189000000, status: "increased" },
+              { name: "Crocodile", crew: "Cross Guild", bounty: 1965000000 },
+              { name: "Boa Hancock", epithet: "Pirate Empress", crew: "Kuja Pirates", bounty: 1659000000, status: "captured" },
+            ]}
+          />
+        </section>
+
+        <Separator variant="ornamental" />
+
+        {/* ── Section: Den Den Mushi ── */}
+        <section className="space-y-6">
+          <h3 className="text-2xl mb-4">Den Den Mushi</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Chat variant</p>
+              <DenDenMushi
+                variant="chat"
+                messages={[
+                  { content: "Luffy! Where are you?!", sender: "Nami", direction: "incoming", timestamp: "10:32" },
+                  { content: "Shishishi! I found meat!", sender: "Luffy", direction: "outgoing", timestamp: "10:33" },
+                  { content: "We need to leave NOW!", sender: "Nami", direction: "incoming", timestamp: "10:33" },
+                  { content: "Just five more minutes...", sender: "Luffy", direction: "outgoing", timestamp: "10:34" },
+                ]}
+              />
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Single variant</p>
+              <DenDenMushi
+                variant="single"
+                messages={[
+                  { content: "All hands on deck! Marine fleet spotted approaching from the south!", sender: "Vice Admiral Smoker", direction: "incoming", timestamp: "Marine HQ Broadcast" },
+                ]}
+              />
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Calling variant</p>
+              <DenDenMushi
+                variant="calling"
+                callerName="Big News Morgans"
+                messages={[]}
+              />
+            </div>
+          </div>
+        </section>
+
+        <Separator variant="ornamental" />
+
+        {/* ── Section: Poneglyph Code ── */}
+        <section className="space-y-6">
+          <h3 className="text-2xl mb-4">Poneglyph Code Block</h3>
+          <div className="space-y-4">
+            <PoneglyphCode
+              language="typescript"
+              showLineNumbers
+              code={`import { WantedPoster } from "newspapercn-ui";
+
+export function BountyCard() {
+  return (
+    <WantedPoster
+      name="Monkey D. Luffy"
+      epithet="Straw Hat"
+      bounty={3_000_000_000}
+      status="dead-or-alive"
+    />
+  );
+}`}
+            />
+            <PoneglyphCode
+              language="ancient text"
+              translatable
+              translationLabel="Decipher"
+              code={`The weapon that lies in Alabasta...
+Pluton, the ancient battleship, rests beneath the sands.
+Only those who can read these words shall know its location.`}
+            />
+          </div>
+        </section>
+
+        <Separator variant="double" />
 
         {/* Footer */}
         <footer className="border-t-[3px] border-double border-foreground pt-4 pb-8 text-center">
