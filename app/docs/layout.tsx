@@ -6,7 +6,7 @@ export default function DocsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto flex max-w-6xl px-4">
+    <div className="mx-auto flex max-w-7xl px-4">
       <DocsSidebar />
       {/* Column rule divider between sidebar and content */}
       <div className="hidden lg:block w-px bg-border shrink-0" />

@@ -77,7 +77,7 @@ export function DocsSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-52 shrink-0 overflow-y-auto py-8 pr-6 hidden lg:block sticky top-[3.75rem] h-[calc(100vh-3.75rem)]">
+    <aside className="w-56 shrink-0 overflow-y-auto py-8 pr-10 hidden lg:block sticky top-[3.75rem] h-[calc(100vh-3.75rem)]">
       <nav className="space-y-6">
         {sections.map((section, sectionIdx) => (
           <div key={section.title}>

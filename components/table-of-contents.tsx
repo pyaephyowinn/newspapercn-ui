@@ -44,7 +44,7 @@ export function TableOfContents({ sections }: TableOfContentsProps) {
 
   return (
     <nav
-      className="hidden xl:block w-44 shrink-0 sticky top-[3.75rem] h-[calc(100vh-3.75rem)] overflow-y-auto py-8 pl-6"
+      className="hidden xl:block sticky top-15 h-[calc(100vh-3.75rem)] overflow-y-auto py-8 pl-6 w-44 shrink-0"
       aria-label="On this page"
     >
       {/* Editorial section header */}
