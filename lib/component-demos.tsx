@@ -30,12 +30,25 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { AlertTriangle, Newspaper, Bell } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
+import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from "@/components/ui/context-menu";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
+import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem } from "@/components/ui/menubar";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
+import { SonnerDemoButton } from "@/components/sonner-demo-button";
+import { AlertTriangle, Newspaper, Bell, Anchor, Map, Ship } from "lucide-react";
 
 interface ComponentDemo {
   demo: React.ReactNode;
   code: string;
 }
+
 
 export const componentDemos: Record<string, ComponentDemo> = {
   // ══════════════════════════════
@@ -724,79 +737,184 @@ export function BountyCard() {
 
   calendar: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Calendar renders with the newspaper theme&apos;s serif fonts and sharp corners. Import and use as standard shadcn Calendar.</p>
+      <Calendar mode="single" />
     ),
-    code: `import { Calendar } from "@/components/ui/calendar";
-
-<Calendar mode="single" selected={date} onSelect={setDate} />`,
+    code: `<Calendar mode="single" selected={date} onSelect={setDate} />`,
   },
 
   "context-menu": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Right-click context menu. Themed with newspaper colors and serif fonts.</p>
+      <ContextMenu>
+        <ContextMenuTrigger>
+          <div className="flex h-32 w-64 items-center justify-center rounded-sm border border-dashed border-border text-sm text-muted-foreground">
+            Right click here
+          </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuItem>Read Article</ContextMenuItem>
+          <ContextMenuItem>Save for Later</ContextMenuItem>
+          <ContextMenuItem>Share</ContextMenuItem>
+          <ContextMenuItem>Print</ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
     ),
     code: `<ContextMenu>
-  <ContextMenuTrigger>Right click here</ContextMenuTrigger>
+  <ContextMenuTrigger>
+    <div className="flex h-32 w-64 items-center justify-center rounded-sm border border-dashed border-border text-sm text-muted-foreground">
+      Right click here
+    </div>
+  </ContextMenuTrigger>
   <ContextMenuContent>
     <ContextMenuItem>Read Article</ContextMenuItem>
     <ContextMenuItem>Save for Later</ContextMenuItem>
+    <ContextMenuItem>Share</ContextMenuItem>
+    <ContextMenuItem>Print</ContextMenuItem>
   </ContextMenuContent>
 </ContextMenu>`,
   },
 
   dialog: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Modal dialog with parchment background and newspaper styling.</p>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button>Open Dialog</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Breaking News</DialogTitle>
+            <DialogDescription>
+              The Revolutionary Army has launched a coordinated assault on multiple
+              World Government facilities across the Grand Line.
+            </DialogDescription>
+          </DialogHeader>
+          <p className="text-sm">Sources within the Marines confirm that at least four key installations have been compromised.</p>
+        </DialogContent>
+      </Dialog>
     ),
     code: `<Dialog>
   <DialogTrigger asChild>
-    <Button>Open</Button>
+    <Button>Open Dialog</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Breaking News</DialogTitle>
-      <DialogDescription>Details here...</DialogDescription>
+      <DialogDescription>
+        The Revolutionary Army has launched a coordinated assault on multiple
+        World Government facilities across the Grand Line.
+      </DialogDescription>
     </DialogHeader>
+    <p>Sources within the Marines confirm that at least four key installations have been compromised.</p>
   </DialogContent>
 </Dialog>`,
   },
 
   "dropdown-menu": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Dropdown menu with newspaper theme colors.</p>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">Sections</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>World News</DropdownMenuItem>
+          <DropdownMenuItem>Politics</DropdownMenuItem>
+          <DropdownMenuItem>Sports</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Opinion</DropdownMenuItem>
+          <DropdownMenuItem>Classifieds</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     ),
     code: `<DropdownMenu>
   <DropdownMenuTrigger asChild>
-    <Button>Menu</Button>
+    <Button variant="outline">Sections</Button>
   </DropdownMenuTrigger>
   <DropdownMenuContent>
     <DropdownMenuItem>World News</DropdownMenuItem>
+    <DropdownMenuItem>Politics</DropdownMenuItem>
     <DropdownMenuItem>Sports</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Opinion</DropdownMenuItem>
+    <DropdownMenuItem>Classifieds</DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>`,
   },
 
   "hover-card": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Hover card with parchment popover styling.</p>
+      <HoverCard>
+        <HoverCardTrigger asChild>
+          <Button variant="link" className="font-serif">@BigNewsMorgans</Button>
+        </HoverCardTrigger>
+        <HoverCardContent className="w-64">
+          <div className="space-y-1">
+            <h4 className="font-serif text-sm font-bold">&ldquo;Big News&rdquo; Morgans</h4>
+            <p className="text-xs text-muted-foreground">President of the World Economy News Paper. Albatross Zoan user.</p>
+            <p className="text-xs text-muted-foreground">Joined: 1524</p>
+          </div>
+        </HoverCardContent>
+      </HoverCard>
     ),
     code: `<HoverCard>
-  <HoverCardTrigger>Hover me</HoverCardTrigger>
-  <HoverCardContent>
-    Preview content here
+  <HoverCardTrigger asChild>
+    <Button variant="link" className="font-serif">@BigNewsMorgans</Button>
+  </HoverCardTrigger>
+  <HoverCardContent className="w-64">
+    <div className="space-y-1">
+      <h4 className="font-serif text-sm font-bold">"Big News" Morgans</h4>
+      <p className="text-xs text-muted-foreground">President of the World Economy News Paper.</p>
+    </div>
   </HoverCardContent>
 </HoverCard>`,
   },
 
   menubar: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Horizontal menu bar with newspaper theme.</p>
+      <Menubar>
+        <MenubarMenu>
+          <MenubarTrigger>File</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>New Article</MenubarItem>
+            <MenubarItem>Open Draft</MenubarItem>
+            <MenubarItem>Save</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>Edit</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>Undo</MenubarItem>
+            <MenubarItem>Redo</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>View</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>Print Preview</MenubarItem>
+            <MenubarItem>Full Screen</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
     ),
     code: `<Menubar>
   <MenubarMenu>
     <MenubarTrigger>File</MenubarTrigger>
     <MenubarContent>
       <MenubarItem>New Article</MenubarItem>
+      <MenubarItem>Open Draft</MenubarItem>
+      <MenubarItem>Save</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+  <MenubarMenu>
+    <MenubarTrigger>Edit</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>Undo</MenubarItem>
+      <MenubarItem>Redo</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+  <MenubarMenu>
+    <MenubarTrigger>View</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>Print Preview</MenubarItem>
+      <MenubarItem>Full Screen</MenubarItem>
     </MenubarContent>
   </MenubarMenu>
 </Menubar>`,
@@ -804,12 +922,23 @@ export function BountyCard() {
 
   "navigation-menu": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Navigation menu with newspaper serif styling.</p>
+      <nav className="flex items-center gap-4 font-sans text-sm">
+        <a href="#" className="font-medium text-foreground hover:text-primary transition-colors">World</a>
+        <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Politics</a>
+        <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Sports</a>
+        <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Opinion</a>
+      </nav>
     ),
     code: `<NavigationMenu>
   <NavigationMenuList>
     <NavigationMenuItem>
-      <NavigationMenuLink href="/docs">Docs</NavigationMenuLink>
+      <NavigationMenuLink href="#">World</NavigationMenuLink>
+    </NavigationMenuItem>
+    <NavigationMenuItem>
+      <NavigationMenuLink href="#">Politics</NavigationMenuLink>
+    </NavigationMenuItem>
+    <NavigationMenuItem>
+      <NavigationMenuLink href="#">Sports</NavigationMenuLink>
     </NavigationMenuItem>
   </NavigationMenuList>
 </NavigationMenu>`,
@@ -817,71 +946,181 @@ export function BountyCard() {
 
   popover: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Popover with cream parchment background.</p>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline">Open Popover</Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-64">
+          <div className="space-y-2">
+            <h4 className="font-serif font-bold text-sm">Subscribe</h4>
+            <p className="text-xs text-muted-foreground">Get the Grand Line Gazette delivered by News Coo.</p>
+            <Input placeholder="your@email.com" />
+            <Button size="sm" className="w-full">Subscribe</Button>
+          </div>
+        </PopoverContent>
+      </Popover>
     ),
     code: `<Popover>
   <PopoverTrigger asChild>
-    <Button>Open</Button>
+    <Button variant="outline">Open Popover</Button>
   </PopoverTrigger>
-  <PopoverContent>Content here</PopoverContent>
+  <PopoverContent className="w-64">
+    <div className="space-y-2">
+      <h4 className="font-serif font-bold text-sm">Subscribe</h4>
+      <p className="text-xs text-muted-foreground">Get the Grand Line Gazette delivered by News Coo.</p>
+      <Input placeholder="your@email.com" />
+      <Button size="sm" className="w-full">Subscribe</Button>
+    </div>
+  </PopoverContent>
 </Popover>`,
   },
 
   "scroll-area": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Custom scrollable area with newspaper-themed scrollbar.</p>
+      <ScrollArea className="h-48 w-64 rounded-sm border border-border p-3">
+        <div className="space-y-3">
+          {["Gol D. Roger", "Edward Newgate", "Kaido", "Charlotte Linlin", "Shanks", "Marshall D. Teach", "Monkey D. Luffy", "Dracule Mihawk", "Buggy", "Trafalgar Law", "Eustass Kid", "Boa Hancock"].map((name) => (
+            <div key={name} className="text-sm border-b border-border/50 pb-2">
+              <p className="font-serif font-bold">{name}</p>
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
     ),
-    code: `<ScrollArea className="h-48">
-  <div>Long content here...</div>
+    code: `<ScrollArea className="h-48 w-64 rounded-sm border border-border p-3">
+  <div className="space-y-3">
+    {pirates.map((name) => (
+      <div key={name} className="text-sm border-b border-border/50 pb-2">
+        <p className="font-serif font-bold">{name}</p>
+      </div>
+    ))}
+  </div>
 </ScrollArea>`,
   },
 
   sheet: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Side sheet/drawer with parchment background.</p>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline">Open Sheet</Button>
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Article Details</SheetTitle>
+            <SheetDescription>Full article view for the Grand Line Gazette.</SheetDescription>
+          </SheetHeader>
+          <div className="py-4 space-y-3">
+            <p className="text-sm">By &ldquo;Big News&rdquo; Morgans — Exclusive Report</p>
+            <p className="text-sm text-muted-foreground">The Revolutionary Army has launched a coordinated assault on multiple World Government facilities.</p>
+          </div>
+        </SheetContent>
+      </Sheet>
     ),
     code: `<Sheet>
   <SheetTrigger asChild>
-    <Button>Open</Button>
+    <Button variant="outline">Open Sheet</Button>
   </SheetTrigger>
   <SheetContent>
     <SheetHeader>
       <SheetTitle>Article Details</SheetTitle>
+      <SheetDescription>Full article view for the Grand Line Gazette.</SheetDescription>
     </SheetHeader>
+    <div className="py-4 space-y-3">
+      <p className="text-sm">By "Big News" Morgans — Exclusive Report</p>
+      <p className="text-sm text-muted-foreground">The Revolutionary Army has launched a coordinated assault...</p>
+    </div>
   </SheetContent>
 </Sheet>`,
   },
 
   "sidebar-component": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Application sidebar with newspaper theme colors.</p>
+      <div className="h-64 w-full overflow-hidden rounded-sm border border-border bg-card">
+        <div className="flex h-full">
+          <div className="w-48 shrink-0 border-r border-border bg-sidebar p-4 space-y-4">
+            <h4 className="font-serif text-xs font-bold uppercase tracking-wider text-muted-foreground">Sections</h4>
+            <nav className="space-y-1">
+              {[
+                { icon: <Newspaper className="h-3.5 w-3.5" />, label: "World News", active: true },
+                { icon: <Anchor className="h-3.5 w-3.5" />, label: "Politics" },
+                { icon: <Ship className="h-3.5 w-3.5" />, label: "Sports" },
+                { icon: <Map className="h-3.5 w-3.5" />, label: "Opinion" },
+              ].map((item) => (
+                <a key={item.label} href="#" className={`flex items-center gap-2 rounded-sm px-2 py-1.5 text-xs transition-colors ${item.active ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}>
+                  {item.icon}
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div className="flex-1 p-4">
+            <p className="text-xs text-muted-foreground">Main content area</p>
+          </div>
+        </div>
+      </div>
     ),
     code: `<SidebarProvider>
   <Sidebar>
-    <SidebarContent>...</SidebarContent>
+    <SidebarContent>
+      <SidebarGroup>
+        <SidebarGroupLabel>Sections</SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href="#"><Newspaper /> World News</a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+    </SidebarContent>
   </Sidebar>
 </SidebarProvider>`,
   },
 
   sonner: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Toast notifications with newspaper styling.</p>
+      <div className="space-y-2 text-center">
+        <Toaster position="bottom-center" />
+        <SonnerDemoButton />
+      </div>
     ),
     code: `import { toast } from "sonner";
 
-toast("Breaking News!", {
-  description: "New bounty update released.",
-});`,
+<Button
+  variant="outline"
+  onClick={() => toast("Breaking News!", {
+    description: "New bounty update released.",
+  })}
+>
+  Show Toast
+</Button>`,
   },
 
   tooltip: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Tooltip with newspaper popover styling. Wrap app with TooltipProvider.</p>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Hover me</Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Breaking news from the Grand Line</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     ),
-    code: `<Tooltip>
-  <TooltipTrigger>Hover me</TooltipTrigger>
-  <TooltipContent>Tooltip text</TooltipContent>
-</Tooltip>`,
+    code: `<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button variant="outline">Hover me</Button>
+    </TooltipTrigger>
+    <TooltipContent>
+      <p>Breaking news from the Grand Line</p>
+    </TooltipContent>
+  </Tooltip>
+</TooltipProvider>`,
   },
 };
 
