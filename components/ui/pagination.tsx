@@ -35,12 +35,14 @@ function PaginationItem({ ...props }: React.ComponentProps<"li">) {
 
 type PaginationLinkProps = {
   isActive?: boolean
+  variant?: "default" | "editorial"
 } & Pick<React.ComponentProps<typeof Button>, "size"> &
   React.ComponentProps<"a">
 
 function PaginationLink({
   className,
   isActive,
+  variant,
   size = "icon",
   ...props
 }: PaginationLinkProps) {
@@ -49,7 +51,11 @@ function PaginationLink({
       asChild
       variant={isActive ? "outline" : "ghost"}
       size={size}
-      className={cn(className)}
+      className={cn(
+        variant === "editorial" && "font-serif rounded-none",
+        variant === "editorial" && isActive && "border-0 border-b-2 border-primary font-bold bg-transparent",
+        className
+      )}
     >
       <a
         aria-current={isActive ? "page" : undefined}
@@ -64,17 +70,28 @@ function PaginationLink({
 function PaginationPrevious({
   className,
   text = "Previous",
+  variant,
   ...props
-}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
+}: React.ComponentProps<typeof PaginationLink> & { text?: string; variant?: "default" | "editorial" }) {
   return (
     <PaginationLink
       aria-label="Go to previous page"
       size="default"
-      className={cn("pl-1.5!", className)}
+      className={cn(
+        "pl-1.5!",
+        variant === "editorial" && "font-serif",
+        className
+      )}
       {...props}
     >
-      <ChevronLeftIcon data-icon="inline-start" />
-      <span className="hidden sm:block">{text}</span>
+      {variant === "editorial" ? (
+        <span className="hidden sm:block">« {text}</span>
+      ) : (
+        <>
+          <ChevronLeftIcon data-icon="inline-start" />
+          <span className="hidden sm:block">{text}</span>
+        </>
+      )}
     </PaginationLink>
   )
 }
@@ -82,17 +99,28 @@ function PaginationPrevious({
 function PaginationNext({
   className,
   text = "Next",
+  variant,
   ...props
-}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
+}: React.ComponentProps<typeof PaginationLink> & { text?: string; variant?: "default" | "editorial" }) {
   return (
     <PaginationLink
       aria-label="Go to next page"
       size="default"
-      className={cn("pr-1.5!", className)}
+      className={cn(
+        "pr-1.5!",
+        variant === "editorial" && "font-serif",
+        className
+      )}
       {...props}
     >
-      <span className="hidden sm:block">{text}</span>
-      <ChevronRightIcon data-icon="inline-end" />
+      {variant === "editorial" ? (
+        <span className="hidden sm:block">{text} »</span>
+      ) : (
+        <>
+          <span className="hidden sm:block">{text}</span>
+          <ChevronRightIcon data-icon="inline-end" />
+        </>
+      )}
     </PaginationLink>
   )
 }

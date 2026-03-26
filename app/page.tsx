@@ -10,6 +10,13 @@ import { BountyTable } from "@/registry/newspapercn/custom/bounty-table";
 import { DenDenMushi } from "@/registry/newspapercn/custom/den-den-mushi";
 import { PoneglyphCode } from "@/registry/newspapercn/custom/poneglyph-code";
 
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { Progress } from "@/components/ui/progress";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -509,6 +516,153 @@ export default function Home() {
             severity="bulletin"
             prefix="BULLETIN"
           />
+        </section>
+
+        <Separator variant="ornamental" />
+
+        {/* ── Section: Tier 2 Newspaper Variants ── */}
+        <section className="space-y-8">
+          <h3 className="text-2xl mb-4">Tier 2 Newspaper Variants</h3>
+
+          {/* Accordion */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Accordion (default)</p>
+              <Accordion type="single" collapsible>
+                <AccordionItem value="1">
+                  <AccordionTrigger>What is the Grand Line?</AccordionTrigger>
+                  <AccordionContent>The Grand Line is the ocean current that runs perpendicular to the Red Line, dividing the world into four seas.</AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="2">
+                  <AccordionTrigger>Who are the Yonko?</AccordionTrigger>
+                  <AccordionContent>The Four Emperors are the most powerful pirates in the New World, ruling over vast territories.</AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Accordion (newspaper)</p>
+              <Accordion type="single" collapsible variant="newspaper">
+                <AccordionItem value="1">
+                  <AccordionTrigger>What is the Grand Line?</AccordionTrigger>
+                  <AccordionContent>The Grand Line is the ocean current that runs perpendicular to the Red Line, dividing the world into four seas.</AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="2">
+                  <AccordionTrigger>Who are the Yonko?</AccordionTrigger>
+                  <AccordionContent>The Four Emperors are the most powerful pirates in the New World, ruling over vast territories.</AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+
+          {/* Select */}
+          <div className="flex flex-wrap gap-6">
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Select (default)</p>
+              <Select>
+                <SelectTrigger className="w-48">
+                  <SelectValue placeholder="Select sea" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="east">East Blue</SelectItem>
+                  <SelectItem value="west">West Blue</SelectItem>
+                  <SelectItem value="north">North Blue</SelectItem>
+                  <SelectItem value="south">South Blue</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Select (classified)</p>
+              <Select>
+                <SelectTrigger variant="classified" className="w-48">
+                  <SelectValue placeholder="Select sea" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="east">East Blue</SelectItem>
+                  <SelectItem value="west">West Blue</SelectItem>
+                  <SelectItem value="north">North Blue</SelectItem>
+                  <SelectItem value="south">South Blue</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* Progress */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Progress (default)</p>
+              <Progress value={65} />
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Progress (inkfill)</p>
+              <Progress variant="inkfill" value={65} />
+            </div>
+          </div>
+
+          {/* Skeleton */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Skeleton (default)</p>
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-3/4" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-5/6" />
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Skeleton (newsprint)</p>
+              <div className="space-y-2">
+                <Skeleton variant="newsprint" className="h-4 w-3/4" />
+                <Skeleton variant="newsprint" className="h-4 w-full" />
+                <Skeleton variant="newsprint" className="h-4 w-5/6" />
+              </div>
+            </div>
+          </div>
+
+          {/* Checkbox */}
+          <div className="flex flex-wrap gap-8">
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Checkbox (default)</p>
+              <div className="flex items-center gap-2">
+                <Checkbox id="c1" defaultChecked />
+                <Label htmlFor="c1">Subscribe to newsletter</Label>
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Checkbox (ballot)</p>
+              <div className="flex items-center gap-2">
+                <Checkbox id="c2" variant="ballot" defaultChecked />
+                <Label htmlFor="c2" className="font-serif">Subscribe to newsletter</Label>
+              </div>
+            </div>
+          </div>
+
+          {/* Pagination */}
+          <div className="space-y-4">
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Pagination (default)</p>
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+                  <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationNext href="#" /></PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-3">Pagination (editorial)</p>
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem><PaginationPrevious href="#" variant="editorial" /></PaginationItem>
+                  <PaginationItem><PaginationLink href="#" variant="editorial">1</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink href="#" variant="editorial" isActive>2</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationLink href="#" variant="editorial">3</PaginationLink></PaginationItem>
+                  <PaginationItem><PaginationNext href="#" variant="editorial" /></PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+          </div>
         </section>
 
         <Separator variant="ornamental" />
