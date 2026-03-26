@@ -1,190 +1,125 @@
+import Link from "next/link";
 import { Masthead } from "@/registry/newspapercn/custom/masthead";
 import { WantedPoster } from "@/registry/newspapercn/custom/wanted-poster";
-import {
-  HeadlineBanner,
-} from "@/registry/newspapercn/custom/headline-banner";
-import { ColumnLayout } from "@/registry/newspapercn/custom/column-layout";
-import { NewsCooBadge } from "@/registry/newspapercn/custom/news-coo-badge";
-import { LogPoseNav } from "@/registry/newspapercn/custom/log-pose-nav";
-import { BountyTable } from "@/registry/newspapercn/custom/bounty-table";
-import { DenDenMushi } from "@/registry/newspapercn/custom/den-den-mushi";
 import { PoneglyphCode } from "@/registry/newspapercn/custom/poneglyph-code";
-
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Progress } from "@/components/ui/progress";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { HeadlineBanner } from "@/registry/newspapercn/custom/headline-banner";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ThemeToggle } from "@/registry/newspapercn/custom/theme-toggle";
-import { Bell, Newspaper, AlertTriangle, Pencil } from "lucide-react";
+import { Newspaper, Palette, Package } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Theme Toggle */}
-      <div className="fixed top-3 right-3 z-50">
-        <ThemeToggle />
-      </div>
-      {/* Breaking News Banner */}
-      <HeadlineBanner
-        headline="Straw Hat Luffy declared Fifth Emperor of the Sea!"
-        severity="breaking"
-        dismissible
-      />
-
-      {/* Masthead */}
-      <Masthead
-        title="Grand Line Gazette"
-        tagline="All the News That's Fit to Print on the Grand Line"
-        date={new Date()}
-        volume={1}
-        issueNumber={1}
-      />
-
-      <div className="max-w-6xl mx-auto px-4 py-8 space-y-12">
-        {/* ── Section: Lead Story with Column Layout ── */}
-        <section>
-          <h2 className="text-4xl mb-1">
-            Revolutionary Army Makes Bold Move Against World Government
-          </h2>
-          <p className="text-muted-foreground text-sm font-sans uppercase tracking-wider mb-4">
-            By &ldquo;Big News&rdquo; Morgans — Exclusive Report
+    <div className="min-h-screen">
+      {/* Hero */}
+      <section className="py-16 md:py-24 px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <Badge variant="section" className="mb-4">
+            shadcn/ui variant
+          </Badge>
+          <h1 className="font-serif text-5xl md:text-7xl font-black tracking-tight mb-4">
+            newspapercn-ui
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground mb-2 max-w-xl mx-auto">
+            A One Piece newspaper-themed component library built on shadcn/ui.
+            Cream parchment, serif typography, and editorial design.
           </p>
-          <Separator className="mb-4" />
-          <ColumnLayout columns={3} gap="md" rule="thin" dropCap justified>
-            <p>
-              In a stunning turn of events, the Revolutionary Army, led by the
-              enigmatic Monkey D. Dragon, has launched a coordinated assault on
-              multiple World Government facilities across the Grand Line. Sources
-              within the Marines confirm that at least four key installations
-              have been compromised.
-            </p>
-            <p>
-              The attacks, which began in the early hours of the morning, caught
-              the World Government largely off guard. Vice Admiral Smoker, who
-              was among the first responders, described the situation as
-              &ldquo;unprecedented in scale and coordination.&rdquo;
-            </p>
-            <p>
-              Fleet Admiral Sakazuki has ordered a full mobilization of Marine
-              forces, recalling all admirals from their current assignments. The
-              Warlords of the Sea system, recently abolished, has left a
-              significant gap in the Government&apos;s defensive capabilities.
-            </p>
-            <p>
-              Cipher Pol agencies have been dispatched to gather intelligence,
-              while the Gorosei convene an emergency session at Mary Geoise. The
-              implications for the balance of power in the world remain to be
-              seen.
-            </p>
-          </ColumnLayout>
-        </section>
+          <p className="text-sm text-muted-foreground font-sans mb-8">
+            Grand Line Gazette Edition
+          </p>
 
-        <Separator />
-
-        {/* ── Section: Article Cards ── */}
-        <section>
-          <h3 className="text-2xl mb-4">Latest Headlines</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-1">
-                  <Badge variant="section">World</Badge>
-                  <span className="text-xs text-muted-foreground font-sans">
-                    2 hours ago
-                  </span>
-                </div>
-                <CardTitle>Wano Country Opens Its Borders</CardTitle>
-                <CardDescription>
-                  After centuries of isolation, the Land of Samurai welcomes
-                  visitors
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm">
-                  In a historic declaration, Shogun Momonosuke has announced that
-                  Wano Country will open its borders for the first time in over
-                  800 years, following the defeat of Emperor Kaido.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card variant="article">
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-1">
-                  <Badge variant="section">Economy</Badge>
-                  <span className="text-xs text-muted-foreground font-sans">
-                    5 hours ago
-                  </span>
-                </div>
-                <CardTitle>Berry Markets Surge After Pirate Festival</CardTitle>
-                <CardDescription>
-                  Trade routes stabilize as new alliances form
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm">
-                  Financial markets across the Grand Line have seen significant
-                  gains following the annual Pirate Festival, with the Berry
-                  climbing 15% against all major currencies.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card variant="featured">
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-1">
-                  <Badge variant="breaking">Breaking</Badge>
-                  <span className="text-xs text-muted-foreground font-sans">
-                    Just Now
-                  </span>
-                </div>
-                <CardTitle>Sea Kings Spotted Near Calm Belt</CardTitle>
-                <CardDescription>
-                  Marine HQ issues navigation advisory
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm">
-                  An unprecedented gathering of Sea Kings has been observed near
-                  the Calm Belt, forcing merchant ships to reroute. Marine
-                  scientists are investigating the unusual migration pattern.
-                </p>
-              </CardContent>
-            </Card>
+          {/* Install command */}
+          <div className="mx-auto max-w-lg mb-8">
+            <div className="flex items-center gap-2 rounded-sm border border-border bg-card px-4 py-2.5 font-mono text-sm">
+              <span className="text-muted-foreground select-none">$</span>
+              <code className="flex-1 text-left overflow-x-auto">
+                npx shadcn@latest add https://newspapercn-ui.vercel.app/r/newspaper-theme.json
+              </code>
+            </div>
           </div>
-        </section>
 
-        <Separator />
+          <div className="flex items-center justify-center gap-3">
+            <Button asChild>
+              <Link href="/docs">Get Started</Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/docs/components">View Components</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
-        {/* ── Section: Wanted Posters ── */}
-        <section>
-          <h3 className="text-2xl mb-4">Most Wanted Pirates</h3>
+      <Separator variant="ornamental" className="max-w-4xl mx-auto" />
+
+      {/* Features */}
+      <section className="py-16 px-4">
+        <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="rounded-sm border border-border bg-card p-6">
+            <Palette className="h-8 w-8 text-primary mb-3" />
+            <h3 className="font-serif text-lg font-bold mb-2">
+              Newspaper Theme
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              OKLCH color tokens, serif fonts, sharp corners. Light and dark
+              mode with warm parchment and ink aesthetics.
+            </p>
+          </div>
+          <div className="rounded-sm border border-border bg-card p-6">
+            <Newspaper className="h-8 w-8 text-primary mb-3" />
+            <h3 className="font-serif text-lg font-bold mb-2">
+              9 Custom Components
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              Masthead, WantedPoster, HeadlineBanner, ColumnLayout,
+              BountyTable, DenDenMushi, PoneglyphCode, and more.
+            </p>
+          </div>
+          <div className="rounded-sm border border-border bg-card p-6">
+            <Package className="h-8 w-8 text-primary mb-3" />
+            <h3 className="font-serif text-lg font-bold mb-2">
+              shadcn Registry
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              11 installable items via the shadcn CLI. Just{" "}
+              <code className="text-xs font-mono bg-muted px-1 rounded-sm">
+                npx shadcn add
+              </code>{" "}
+              and go.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Separator variant="ornamental" className="max-w-4xl mx-auto" />
+
+      {/* Showcase */}
+      <section className="py-16 px-4">
+        <div className="mx-auto max-w-4xl space-y-12">
+          <div className="text-center">
+            <h2 className="font-serif text-3xl font-bold mb-2">
+              Component Showcase
+            </h2>
+            <p className="text-muted-foreground">
+              A taste of what&apos;s inside
+            </p>
+          </div>
+
+          {/* Masthead demo */}
+          <Masthead
+            title="Grand Line Gazette"
+            tagline="All the News That's Fit to Print on the Grand Line"
+            date={new Date()}
+            volume={1}
+            issueNumber={1}
+          />
+
+          {/* HeadlineBanner */}
+          <HeadlineBanner
+            headline="Straw Hat Luffy declared Fifth Emperor of the Sea!"
+            severity="breaking"
+          />
+
+          {/* Wanted Posters */}
           <div className="flex flex-wrap gap-6 justify-center">
             <WantedPoster
               name="Monkey D. Luffy"
@@ -195,7 +130,7 @@ export default function Home() {
                   🏴‍☠️
                 </div>
               }
-              size="md"
+              size="sm"
             />
             <WantedPoster
               name="Trafalgar Law"
@@ -206,600 +141,72 @@ export default function Home() {
                   ⚔️
                 </div>
               }
-              size="md"
+              size="sm"
               variant="revised"
             />
-            <WantedPoster
-              name="Eustass Kid"
-              epithet="Captain"
-              bounty={3000000000}
-              image={
-                <div className="w-full h-full bg-secondary flex items-center justify-center text-4xl">
-                  🦾
-                </div>
-              }
-              size="md"
-              variant="torn"
-            />
-          </div>
-        </section>
-
-        <Separator />
-
-        {/* ── Section: Tabs (Newspaper Sections) ── */}
-        <section>
-          <Tabs defaultValue="politics">
-            <TabsList>
-              <TabsTrigger value="politics">Politics</TabsTrigger>
-              <TabsTrigger value="sports">Sports</TabsTrigger>
-              <TabsTrigger value="science">Science</TabsTrigger>
-            </TabsList>
-            <TabsContent value="politics" className="mt-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Reverie Delegates Demand Naval Reform</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm">
-                    Representatives from over 50 nations attending the Reverie
-                    have formally petitioned the World Government to restructure
-                    Marine command, citing recent failures to protect civilian
-                    populations from pirate threats.
-                  </p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            <TabsContent value="sports" className="mt-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>
-                    Davy Back Fight Championship Results Announced
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm">
-                    The annual Grand Line Davy Back Fight Championship concluded
-                    with the Foxy Pirates defending their title for the third
-                    consecutive year, despite a strong showing from newcomers.
-                  </p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            <TabsContent value="science" className="mt-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>
-                    Vegapunk&apos;s Latest Invention Promises Clean Energy
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm">
-                    Dr. Vegapunk has unveiled a new energy source derived from
-                    sea prism stone technology that could revolutionize
-                    navigation and power generation across all four seas.
-                  </p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </section>
-
-        <Separator />
-
-        {/* ── Section: Bounty Table ── */}
-        <section>
-          <h3 className="text-2xl mb-4">Updated Bounty List</h3>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Rank</TableHead>
-                <TableHead>Pirate</TableHead>
-                <TableHead>Crew</TableHead>
-                <TableHead className="text-right">Bounty (฿)</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell>1</TableCell>
-                <TableCell className="font-serif font-bold">
-                  Gol D. Roger
-                </TableCell>
-                <TableCell>Roger Pirates</TableCell>
-                <TableCell className="text-right font-bold">
-                  5,564,800,000
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>2</TableCell>
-                <TableCell className="font-serif font-bold">
-                  Edward Newgate
-                </TableCell>
-                <TableCell>Whitebeard Pirates</TableCell>
-                <TableCell className="text-right font-bold">
-                  5,046,000,000
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>3</TableCell>
-                <TableCell className="font-serif font-bold">Kaido</TableCell>
-                <TableCell>Beasts Pirates</TableCell>
-                <TableCell className="text-right font-bold">
-                  4,611,100,000
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>4</TableCell>
-                <TableCell className="font-serif font-bold">
-                  Big Mom
-                </TableCell>
-                <TableCell>Big Mom Pirates</TableCell>
-                <TableCell className="text-right font-bold">
-                  4,388,000,000
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>5</TableCell>
-                <TableCell className="font-serif font-bold">Shanks</TableCell>
-                <TableCell>Red Hair Pirates</TableCell>
-                <TableCell className="text-right font-bold">
-                  4,048,900,000
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </section>
-
-        <Separator />
-
-        {/* ── Section: Alerts ── */}
-        <section className="space-y-4">
-          <h3 className="text-2xl mb-4">Alerts & Notices</h3>
-          <Alert>
-            <Newspaper className="h-4 w-4" />
-            <AlertTitle>Marine Bulletin</AlertTitle>
-            <AlertDescription>
-              All citizens are advised to report any Straw Hat Pirate sightings
-              to the nearest Marine base immediately.
-            </AlertDescription>
-          </Alert>
-          <Alert variant="destructive">
-            <AlertTriangle className="h-4 w-4" />
-            <AlertTitle>Storm Warning</AlertTitle>
-            <AlertDescription>
-              A massive storm system is approaching the Sabaody Archipelago.
-              Ships are advised to remain in port until further notice.
-            </AlertDescription>
-          </Alert>
-          <Alert variant="breaking">
-            <AlertTriangle className="h-4 w-4" />
-            <AlertTitle>BREAKING: Blackbeard Sighted at Marineford</AlertTitle>
-            <AlertDescription>
-              Multiple witnesses confirm the appearance of the Yonko at the
-              ruins of the former Marine headquarters. All units on high alert.
-            </AlertDescription>
-          </Alert>
-          <Alert variant="correction">
-            <Pencil className="h-4 w-4" />
-            <AlertTitle>Editor&apos;s Correction</AlertTitle>
-            <AlertDescription>
-              An earlier edition incorrectly stated that Captain Buggy had been
-              captured. We regret the error. Buggy remains at large and is now
-              a cross-guild leader.
-            </AlertDescription>
-          </Alert>
-        </section>
-
-        <Separator />
-
-        {/* ── Section: Buttons & Badges ── */}
-        <section className="space-y-4">
-          <h3 className="text-2xl mb-4">UI Components</h3>
-
-          <div className="space-y-6">
-            <div>
-              <h4 className="text-lg mb-3 font-sans text-muted-foreground">
-                Buttons
-              </h4>
-              <div className="flex flex-wrap gap-3">
-                <Button>Primary</Button>
-                <Button variant="secondary">Secondary</Button>
-                <Button variant="destructive">Destructive</Button>
-                <Button variant="accent">Accent (Red)</Button>
-                <Button variant="outline">Outline</Button>
-                <Button variant="ghost">Ghost</Button>
-                <Button variant="newspaper">Editorial Link</Button>
-                <Button variant="link">Link</Button>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg mb-3 font-sans text-muted-foreground">
-                Badges
-              </h4>
-              <div className="flex flex-wrap gap-2 items-center">
-                <Badge>Default</Badge>
-                <Badge variant="secondary">Economy</Badge>
-                <Badge variant="destructive">Urgent</Badge>
-                <Badge variant="outline">Draft</Badge>
-                <Badge variant="section">Politics</Badge>
-                <Badge variant="section">Sports</Badge>
-                <Badge variant="breaking">Breaking</Badge>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg mb-3 font-sans text-muted-foreground">
-                News Coo Badges
-              </h4>
-              <div className="flex flex-wrap gap-6">
-                <NewsCooBadge count={5}>
-                  <Button variant="outline" size="icon">
-                    <Bell className="h-4 w-4" />
-                  </Button>
-                </NewsCooBadge>
-                <NewsCooBadge variant="dot">
-                  <Button variant="outline" size="icon">
-                    <Newspaper className="h-4 w-4" />
-                  </Button>
-                </NewsCooBadge>
-                <NewsCooBadge variant="new" animate>
-                  <Button variant="outline" size="icon">
-                    <Newspaper className="h-4 w-4" />
-                  </Button>
-                </NewsCooBadge>
-                <NewsCooBadge variant="icon">
-                  <Avatar>
-                    <AvatarFallback>ML</AvatarFallback>
-                  </Avatar>
-                </NewsCooBadge>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Separator />
-
-        {/* ── Section: Separator Variants ── */}
-        <section className="space-y-6">
-          <h3 className="text-2xl mb-4">Separator Variants</h3>
-          <div className="space-y-4">
-            <div><p className="text-xs font-sans text-muted-foreground mb-2">Default</p><Separator /></div>
-            <div><p className="text-xs font-sans text-muted-foreground mb-2">Thick</p><Separator variant="thick" /></div>
-            <div><p className="text-xs font-sans text-muted-foreground mb-2">Double</p><Separator variant="double" /></div>
-            <div><p className="text-xs font-sans text-muted-foreground mb-2">Dashed</p><Separator variant="dashed" /></div>
-            <div><p className="text-xs font-sans text-muted-foreground mb-2">Ornamental</p><Separator variant="ornamental" /></div>
-          </div>
-        </section>
-
-        <Separator variant="ornamental" />
-
-        {/* ── Section: Form Elements ── */}
-        <section className="space-y-4 max-w-lg">
-          <h3 className="text-2xl mb-4">Letter to the Editor</h3>
-          <div className="space-y-4">
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-2">Default inputs</p>
-              <div className="space-y-3">
-                <Input placeholder="Your name" />
-                <Input placeholder="Subject" />
-                <Textarea placeholder="Write your letter here..." rows={5} />
-              </div>
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-2">Editorial inputs</p>
-              <div className="space-y-3">
-                <Input variant="editorial" placeholder="Your name" />
-                <Input variant="editorial" placeholder="Subject" />
-                <Textarea variant="letter" placeholder="Write your letter here..." rows={5} />
-              </div>
-            </div>
-            <Button>Submit Letter</Button>
-          </div>
-        </section>
-
-        <Separator />
-
-        {/* ── Section: Banner Variants ── */}
-        <section className="space-y-4">
-          <h3 className="text-2xl mb-4">Headline Banners</h3>
-          <HeadlineBanner
-            headline="Cross Guild offers bounties on Marine officers!"
-            severity="breaking"
-          />
-          <HeadlineBanner
-            headline="New trade route opens between Water 7 and Dressrosa"
-            severity="update"
-            prefix="UPDATE"
-          />
-          <HeadlineBanner
-            headline="Weather forecast: Sunny skies expected across East Blue this week"
-            severity="bulletin"
-            prefix="BULLETIN"
-          />
-        </section>
-
-        <Separator variant="ornamental" />
-
-        {/* ── Section: Tier 2 Newspaper Variants ── */}
-        <section className="space-y-8">
-          <h3 className="text-2xl mb-4">Tier 2 Newspaper Variants</h3>
-
-          {/* Accordion */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Accordion (default)</p>
-              <Accordion type="single" collapsible>
-                <AccordionItem value="1">
-                  <AccordionTrigger>What is the Grand Line?</AccordionTrigger>
-                  <AccordionContent>The Grand Line is the ocean current that runs perpendicular to the Red Line, dividing the world into four seas.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="2">
-                  <AccordionTrigger>Who are the Yonko?</AccordionTrigger>
-                  <AccordionContent>The Four Emperors are the most powerful pirates in the New World, ruling over vast territories.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Accordion (newspaper)</p>
-              <Accordion type="single" collapsible variant="newspaper">
-                <AccordionItem value="1">
-                  <AccordionTrigger>What is the Grand Line?</AccordionTrigger>
-                  <AccordionContent>The Grand Line is the ocean current that runs perpendicular to the Red Line, dividing the world into four seas.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="2">
-                  <AccordionTrigger>Who are the Yonko?</AccordionTrigger>
-                  <AccordionContent>The Four Emperors are the most powerful pirates in the New World, ruling over vast territories.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
           </div>
 
-          {/* Select */}
-          <div className="flex flex-wrap gap-6">
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Select (default)</p>
-              <Select>
-                <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Select sea" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="east">East Blue</SelectItem>
-                  <SelectItem value="west">West Blue</SelectItem>
-                  <SelectItem value="north">North Blue</SelectItem>
-                  <SelectItem value="south">South Blue</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Select (classified)</p>
-              <Select>
-                <SelectTrigger variant="classified" className="w-48">
-                  <SelectValue placeholder="Select sea" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="east">East Blue</SelectItem>
-                  <SelectItem value="west">West Blue</SelectItem>
-                  <SelectItem value="north">North Blue</SelectItem>
-                  <SelectItem value="south">South Blue</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          {/* Progress */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Progress (default)</p>
-              <Progress value={65} />
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Progress (inkfill)</p>
-              <Progress variant="inkfill" value={65} />
-            </div>
-          </div>
-
-          {/* Skeleton */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Skeleton (default)</p>
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-3/4" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-5/6" />
-              </div>
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Skeleton (newsprint)</p>
-              <div className="space-y-2">
-                <Skeleton variant="newsprint" className="h-4 w-3/4" />
-                <Skeleton variant="newsprint" className="h-4 w-full" />
-                <Skeleton variant="newsprint" className="h-4 w-5/6" />
-              </div>
-            </div>
-          </div>
-
-          {/* Checkbox */}
-          <div className="flex flex-wrap gap-8">
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Checkbox (default)</p>
-              <div className="flex items-center gap-2">
-                <Checkbox id="c1" defaultChecked />
-                <Label htmlFor="c1">Subscribe to newsletter</Label>
-              </div>
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Checkbox (ballot)</p>
-              <div className="flex items-center gap-2">
-                <Checkbox id="c2" variant="ballot" defaultChecked />
-                <Label htmlFor="c2" className="font-serif">Subscribe to newsletter</Label>
-              </div>
-            </div>
-          </div>
-
-          {/* Pagination */}
-          <div className="space-y-4">
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Pagination (default)</p>
-              <Pagination>
-                <PaginationContent>
-                  <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
-                  <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationNext href="#" /></PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Pagination (editorial)</p>
-              <Pagination>
-                <PaginationContent>
-                  <PaginationItem><PaginationPrevious href="#" variant="editorial" /></PaginationItem>
-                  <PaginationItem><PaginationLink href="#" variant="editorial">1</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink href="#" variant="editorial" isActive>2</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink href="#" variant="editorial">3</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationNext href="#" variant="editorial" /></PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-          </div>
-        </section>
-
-        <Separator variant="ornamental" />
-
-        {/* ── Section: Log Pose Navigation ── */}
-        <section className="space-y-6">
-          <h3 className="text-2xl mb-4">Log Pose Navigation</h3>
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Compass variant</p>
-              <LogPoseNav
-                variant="compass"
-                items={[
-                  { label: "Alabasta", href: "#", active: false },
-                  { label: "Water 7", href: "#", active: false },
-                  { label: "Sabaody", href: "#", active: true },
-                  { label: "Fish-Man", href: "#", active: false },
-                  { label: "Dressrosa", href: "#", active: false },
-                  { label: "Wano", href: "#", active: false },
-                ]}
-              />
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Linear variant</p>
-              <LogPoseNav
-                variant="linear"
-                items={[
-                  { label: "East Blue", href: "#" },
-                  { label: "Grand Line", href: "#" },
-                  { label: "New World", href: "#", active: true },
-                  { label: "Laugh Tale", href: "#" },
-                ]}
-              />
-            </div>
-          </div>
-        </section>
-
-        <Separator variant="ornamental" />
-
-        {/* ── Section: Bounty Table ── */}
-        <section>
-          <BountyTable
-            title="Grand Line Most Wanted"
-            entries={[
-              { name: "Monkey D. Luffy", epithet: "Straw Hat", crew: "Straw Hat Pirates", bounty: 3000000000, status: "increased" },
-              { name: "Trafalgar Law", epithet: "Surgeon of Death", crew: "Heart Pirates", bounty: 3000000000, status: "new" },
-              { name: "Eustass Kid", epithet: "Captain", crew: "Kid Pirates", bounty: 3000000000, status: "new" },
-              { name: "Buggy", epithet: "The Genius Jester", crew: "Cross Guild", bounty: 3189000000, status: "increased" },
-              { name: "Crocodile", crew: "Cross Guild", bounty: 1965000000 },
-              { name: "Boa Hancock", epithet: "Pirate Empress", crew: "Kuja Pirates", bounty: 1659000000, status: "captured" },
-            ]}
-          />
-        </section>
-
-        <Separator variant="ornamental" />
-
-        {/* ── Section: Den Den Mushi ── */}
-        <section className="space-y-6">
-          <h3 className="text-2xl mb-4">Den Den Mushi</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Chat variant</p>
-              <DenDenMushi
-                variant="chat"
-                messages={[
-                  { content: "Luffy! Where are you?!", sender: "Nami", direction: "incoming", timestamp: "10:32" },
-                  { content: "Shishishi! I found meat!", sender: "Luffy", direction: "outgoing", timestamp: "10:33" },
-                  { content: "We need to leave NOW!", sender: "Nami", direction: "incoming", timestamp: "10:33" },
-                  { content: "Just five more minutes...", sender: "Luffy", direction: "outgoing", timestamp: "10:34" },
-                ]}
-              />
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Single variant</p>
-              <DenDenMushi
-                variant="single"
-                messages={[
-                  { content: "All hands on deck! Marine fleet spotted approaching from the south!", sender: "Vice Admiral Smoker", direction: "incoming", timestamp: "Marine HQ Broadcast" },
-                ]}
-              />
-            </div>
-            <div>
-              <p className="text-xs font-sans text-muted-foreground mb-3">Calling variant</p>
-              <DenDenMushi
-                variant="calling"
-                callerName="Big News Morgans"
-                messages={[]}
-              />
-            </div>
-          </div>
-        </section>
-
-        <Separator variant="ornamental" />
-
-        {/* ── Section: Poneglyph Code ── */}
-        <section className="space-y-6">
-          <h3 className="text-2xl mb-4">Poneglyph Code Block</h3>
-          <div className="space-y-4">
-            <PoneglyphCode
-              language="typescript"
-              showLineNumbers
-              code={`import { WantedPoster } from "newspapercn-ui";
+          {/* Poneglyph */}
+          <PoneglyphCode
+            language="typescript"
+            showLineNumbers
+            code={`import { WantedPoster } from "newspapercn-ui";
 
 export function BountyCard() {
   return (
     <WantedPoster
       name="Monkey D. Luffy"
-      epithet="Straw Hat"
       bounty={3_000_000_000}
-      status="dead-or-alive"
     />
   );
 }`}
-            />
-            <PoneglyphCode
-              language="ancient text"
-              translatable
-              translationLabel="Decipher"
-              code={`The weapon that lies in Alabasta...
-Pluton, the ancient battleship, rests beneath the sands.
-Only those who can read these words shall know its location.`}
-            />
+          />
+        </div>
+      </section>
+
+      <Separator variant="ornamental" className="max-w-4xl mx-auto" />
+
+      {/* Install */}
+      <section className="py-16 px-4">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-serif text-3xl font-bold mb-6">Get Started</h2>
+          <div className="space-y-3 text-left">
+            <p className="text-sm font-sans text-muted-foreground">
+              1. Install the theme
+            </p>
+            <div className="rounded-sm border border-border bg-card px-4 py-2.5 font-mono text-sm overflow-x-auto">
+              npx shadcn@latest add https://newspapercn-ui.vercel.app/r/newspaper-theme.json
+            </div>
+            <p className="text-sm font-sans text-muted-foreground mt-4">
+              2. Add components
+            </p>
+            <div className="rounded-sm border border-border bg-card px-4 py-2.5 font-mono text-sm overflow-x-auto">
+              npx shadcn@latest add https://newspapercn-ui.vercel.app/r/wanted-poster.json
+            </div>
           </div>
-        </section>
+          <div className="mt-8">
+            <Button asChild>
+              <Link href="/docs">Read the Docs</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
-        <Separator variant="double" />
-
-        {/* Footer */}
-        <footer className="border-t-[3px] border-double border-foreground pt-4 pb-8 text-center">
-          <p className="font-serif text-lg font-bold">
-            newspapercn-ui
-          </p>
-          <p className="text-sm text-muted-foreground font-sans">
-            A shadcn/ui variant with a One Piece newspaper theme
-          </p>
-        </footer>
-      </div>
-    </main>
+      {/* Footer */}
+      <footer className="border-t-[3px] border-double border-foreground py-8 text-center">
+        <p className="font-serif text-lg font-bold">newspapercn-ui</p>
+        <p className="text-sm text-muted-foreground font-sans">
+          A shadcn/ui variant with a One Piece newspaper theme
+        </p>
+        <p className="text-xs text-muted-foreground font-sans mt-2">
+          <a
+            href="https://github.com/pyaephyowinn/newspapercn-ui"
+            className="hover:text-foreground transition-colors"
+          >
+            GitHub
+          </a>
+        </p>
+      </footer>
+    </div>
   );
 }
