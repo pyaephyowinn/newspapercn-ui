@@ -30,7 +30,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { ThemeToggle } from "@/registry/newspapercn/custom/theme-toggle";
-import { Bell, Newspaper, AlertTriangle } from "lucide-react";
+import { Bell, Newspaper, AlertTriangle, Pencil } from "lucide-react";
 
 export default function Home() {
   return (
@@ -103,7 +103,7 @@ export default function Home() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2 mb-1">
-                  <Badge>World</Badge>
+                  <Badge variant="section">World</Badge>
                   <span className="text-xs text-muted-foreground font-sans">
                     2 hours ago
                   </span>
@@ -123,10 +123,10 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card variant="article">
               <CardHeader>
                 <div className="flex items-center gap-2 mb-1">
-                  <Badge variant="secondary">Economy</Badge>
+                  <Badge variant="section">Economy</Badge>
                   <span className="text-xs text-muted-foreground font-sans">
                     5 hours ago
                   </span>
@@ -145,10 +145,10 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card variant="featured">
               <CardHeader>
                 <div className="flex items-center gap-2 mb-1">
-                  <Badge variant="destructive">Urgent</Badge>
+                  <Badge variant="breaking">Breaking</Badge>
                   <span className="text-xs text-muted-foreground font-sans">
                     Just Now
                   </span>
@@ -359,6 +359,23 @@ export default function Home() {
               Ships are advised to remain in port until further notice.
             </AlertDescription>
           </Alert>
+          <Alert variant="breaking">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>BREAKING: Blackbeard Sighted at Marineford</AlertTitle>
+            <AlertDescription>
+              Multiple witnesses confirm the appearance of the Yonko at the
+              ruins of the former Marine headquarters. All units on high alert.
+            </AlertDescription>
+          </Alert>
+          <Alert variant="correction">
+            <Pencil className="h-4 w-4" />
+            <AlertTitle>Editor&apos;s Correction</AlertTitle>
+            <AlertDescription>
+              An earlier edition incorrectly stated that Captain Buggy had been
+              captured. We regret the error. Buggy remains at large and is now
+              a cross-guild leader.
+            </AlertDescription>
+          </Alert>
         </section>
 
         <Separator />
@@ -376,8 +393,10 @@ export default function Home() {
                 <Button>Primary</Button>
                 <Button variant="secondary">Secondary</Button>
                 <Button variant="destructive">Destructive</Button>
+                <Button variant="accent">Accent (Red)</Button>
                 <Button variant="outline">Outline</Button>
                 <Button variant="ghost">Ghost</Button>
+                <Button variant="newspaper">Editorial Link</Button>
                 <Button variant="link">Link</Button>
               </div>
             </div>
@@ -386,11 +405,14 @@ export default function Home() {
               <h4 className="text-lg mb-3 font-sans text-muted-foreground">
                 Badges
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 items-center">
                 <Badge>Default</Badge>
                 <Badge variant="secondary">Economy</Badge>
                 <Badge variant="destructive">Urgent</Badge>
                 <Badge variant="outline">Draft</Badge>
+                <Badge variant="section">Politics</Badge>
+                <Badge variant="section">Sports</Badge>
+                <Badge variant="breaking">Breaking</Badge>
               </div>
             </div>
 
@@ -426,16 +448,40 @@ export default function Home() {
 
         <Separator />
 
+        {/* ── Section: Separator Variants ── */}
+        <section className="space-y-6">
+          <h3 className="text-2xl mb-4">Separator Variants</h3>
+          <div className="space-y-4">
+            <div><p className="text-xs font-sans text-muted-foreground mb-2">Default</p><Separator /></div>
+            <div><p className="text-xs font-sans text-muted-foreground mb-2">Thick</p><Separator variant="thick" /></div>
+            <div><p className="text-xs font-sans text-muted-foreground mb-2">Double</p><Separator variant="double" /></div>
+            <div><p className="text-xs font-sans text-muted-foreground mb-2">Dashed</p><Separator variant="dashed" /></div>
+            <div><p className="text-xs font-sans text-muted-foreground mb-2">Ornamental</p><Separator variant="ornamental" /></div>
+          </div>
+        </section>
+
+        <Separator variant="ornamental" />
+
         {/* ── Section: Form Elements ── */}
         <section className="space-y-4 max-w-lg">
           <h3 className="text-2xl mb-4">Letter to the Editor</h3>
-          <div className="space-y-3">
-            <Input placeholder="Your name" />
-            <Input placeholder="Subject" />
-            <Textarea
-              placeholder="Write your letter here..."
-              rows={5}
-            />
+          <div className="space-y-4">
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-2">Default inputs</p>
+              <div className="space-y-3">
+                <Input placeholder="Your name" />
+                <Input placeholder="Subject" />
+                <Textarea placeholder="Write your letter here..." rows={5} />
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-sans text-muted-foreground mb-2">Editorial inputs</p>
+              <div className="space-y-3">
+                <Input variant="editorial" placeholder="Your name" />
+                <Input variant="editorial" placeholder="Subject" />
+                <Textarea variant="letter" placeholder="Write your letter here..." rows={5} />
+              </div>
+            </div>
             <Button>Submit Letter</Button>
           </div>
         </section>
