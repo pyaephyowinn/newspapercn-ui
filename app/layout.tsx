@@ -5,6 +5,7 @@ import "@fontsource/libre-baskerville";
 import "@fontsource/libre-baskerville/700.css";
 import "@fontsource/libre-baskerville/400-italic.css";
 import "@fontsource-variable/montserrat";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -24,8 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

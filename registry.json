@@ -77,6 +77,40 @@
           "target": "components/newspapercn/news-coo-badge.tsx"
         }
       ]
+    },
+    {
+      "name": "newspaper-theme",
+      "type": "registry:block",
+      "title": "Newspaper Theme",
+      "description": "Grand Line Gazette theme — OKLCH color tokens, serif fonts, sharp corners, and editorial styling for light/dark mode.",
+      "dependencies": [
+        "@fontsource-variable/playfair-display",
+        "@fontsource/libre-baskerville",
+        "@fontsource-variable/montserrat"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/newspapercn/custom/newspaper-theme.css",
+          "type": "registry:file",
+          "target": "styles/newspaper-theme.css"
+        }
+      ]
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:block",
+      "title": "Theme Toggle",
+      "description": "Light/dark mode toggle button with Sun/Moon icons for the newspaper theme.",
+      "dependencies": ["lucide-react", "next-themes"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/newspapercn/custom/theme-toggle.tsx",
+          "type": "registry:component",
+          "target": "components/newspapercn/theme-toggle.tsx"
+        }
+      ]
     }
   ]
 }

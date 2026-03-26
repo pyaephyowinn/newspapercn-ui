@@ -29,11 +29,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { ThemeToggle } from "@/registry/newspapercn/custom/theme-toggle";
 import { Bell, Newspaper, AlertTriangle } from "lucide-react";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* Theme Toggle */}
+      <div className="fixed top-3 right-3 z-50">
+        <ThemeToggle />
+      </div>
       {/* Breaking News Banner */}
       <HeadlineBanner
         headline="Straw Hat Luffy declared Fifth Emperor of the Sea!"

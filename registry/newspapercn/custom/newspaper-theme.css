@@ -1,0 +1,144 @@
+/* ============================================
+   newspapercn-ui: "Grand Line Gazette" Theme
+   One Piece World Economic Journal inspired
+
+   Install: npx shadcn@latest add https://newspapercn-ui.vercel.app/r/newspaper-theme.json
+
+   After installing, import this file in your globals.css:
+     @import "./newspaper-theme.css";
+
+   And add the font imports to your root layout:
+     import "@fontsource-variable/playfair-display";
+     import "@fontsource/libre-baskerville";
+     import "@fontsource/libre-baskerville/700.css";
+     import "@fontsource/libre-baskerville/400-italic.css";
+     import "@fontsource-variable/montserrat";
+   ============================================ */
+
+:root {
+  /* Fonts */
+  --font-serif: 'Playfair Display Variable', Georgia, serif;
+  --font-body: 'Libre Baskerville', Georgia, serif;
+  --font-sans: 'Montserrat Variable', 'Helvetica Neue', sans-serif;
+
+  /* Surfaces */
+  --background: oklch(0.95 0.015 80);
+  --foreground: oklch(0.20 0.02 60);
+  --card: oklch(0.93 0.018 75);
+  --card-foreground: oklch(0.20 0.02 60);
+  --popover: oklch(0.96 0.012 80);
+  --popover-foreground: oklch(0.20 0.02 60);
+
+  /* Primary: Deep Navy (Marine blue) */
+  --primary: oklch(0.30 0.08 260);
+  --primary-foreground: oklch(0.95 0.015 80);
+
+  /* Secondary: Warm Sepia/Tan */
+  --secondary: oklch(0.78 0.04 70);
+  --secondary-foreground: oklch(0.22 0.02 60);
+
+  /* Muted: Faded Newsprint */
+  --muted: oklch(0.90 0.01 75);
+  --muted-foreground: oklch(0.50 0.02 60);
+
+  /* Accent: Bold Red ("BIG NEWS!") */
+  --accent: oklch(0.55 0.22 25);
+  --accent-foreground: oklch(0.96 0.01 80);
+
+  /* Destructive: Deep Crimson */
+  --destructive: oklch(0.50 0.20 28);
+  --destructive-foreground: oklch(0.96 0.01 20);
+
+  /* Borders & Inputs */
+  --border: oklch(0.40 0.02 60);
+  --input: oklch(0.75 0.02 70);
+  --ring: oklch(0.35 0.06 260);
+
+  /* Charts */
+  --chart-1: oklch(0.30 0.08 260);
+  --chart-2: oklch(0.55 0.22 25);
+  --chart-3: oklch(0.78 0.04 70);
+  --chart-4: oklch(0.50 0.02 60);
+  --chart-5: oklch(0.65 0.10 150);
+
+  /* Sharp editorial corners */
+  --radius: 0.125rem;
+
+  /* Sidebar */
+  --sidebar: oklch(0.92 0.02 75);
+  --sidebar-foreground: oklch(0.20 0.02 60);
+  --sidebar-primary: oklch(0.30 0.08 260);
+  --sidebar-primary-foreground: oklch(0.95 0.015 80);
+  --sidebar-accent: oklch(0.86 0.025 72);
+  --sidebar-accent-foreground: oklch(0.22 0.02 60);
+  --sidebar-border: oklch(0.55 0.02 65);
+  --sidebar-ring: oklch(0.35 0.06 260);
+}
+
+.dark {
+  /* Surfaces: Dark Newsprint */
+  --background: oklch(0.18 0.015 60);
+  --foreground: oklch(0.88 0.02 75);
+  --card: oklch(0.22 0.018 60);
+  --card-foreground: oklch(0.88 0.02 75);
+  --popover: oklch(0.24 0.015 60);
+  --popover-foreground: oklch(0.88 0.02 75);
+
+  /* Primary: Lighter Navy */
+  --primary: oklch(0.60 0.12 260);
+  --primary-foreground: oklch(0.18 0.015 60);
+
+  /* Secondary: Dark Sepia */
+  --secondary: oklch(0.35 0.03 65);
+  --secondary-foreground: oklch(0.88 0.02 75);
+
+  /* Muted: Dark Muted */
+  --muted: oklch(0.28 0.01 60);
+  --muted-foreground: oklch(0.62 0.02 70);
+
+  /* Accent: Bright Red */
+  --accent: oklch(0.62 0.20 25);
+  --accent-foreground: oklch(0.95 0.01 75);
+
+  /* Destructive: Brighter Crimson */
+  --destructive: oklch(0.60 0.22 27);
+  --destructive-foreground: oklch(0.95 0.01 20);
+
+  /* Borders & Inputs */
+  --border: oklch(0.88 0.02 75 / 15%);
+  --input: oklch(0.88 0.02 75 / 20%);
+  --ring: oklch(0.55 0.10 260);
+
+  /* Charts */
+  --chart-1: oklch(0.60 0.12 260);
+  --chart-2: oklch(0.62 0.20 25);
+  --chart-3: oklch(0.65 0.06 70);
+  --chart-4: oklch(0.62 0.02 70);
+  --chart-5: oklch(0.60 0.12 150);
+
+  /* Sidebar */
+  --sidebar: oklch(0.20 0.018 60);
+  --sidebar-foreground: oklch(0.88 0.02 75);
+  --sidebar-primary: oklch(0.60 0.12 260);
+  --sidebar-primary-foreground: oklch(0.95 0.015 80);
+  --sidebar-accent: oklch(0.30 0.025 65);
+  --sidebar-accent-foreground: oklch(0.88 0.02 75);
+  --sidebar-border: oklch(0.88 0.02 75 / 12%);
+  --sidebar-ring: oklch(0.50 0.08 260);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+  }
+  ::selection {
+    background: oklch(0.30 0.08 260);
+    color: oklch(0.95 0.015 80);
+  }
+}

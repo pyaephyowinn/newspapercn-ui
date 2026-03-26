@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-toggle",
+  "title": "Theme Toggle",
+  "description": "Light/dark mode toggle button with Sun/Moon icons for the newspaper theme.",
+  "dependencies": [
+    "lucide-react",
+    "next-themes"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/newspapercn/custom/theme-toggle.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Moon, Sun } from \"lucide-react\";\nimport { useTheme } from \"next-themes\";\nimport { cn } from \"@/lib/utils\";\n\ninterface ThemeToggleProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  size?: \"sm\" | \"md\" | \"lg\";\n}\n\nconst ThemeToggle = React.forwardRef<HTMLButtonElement, ThemeToggleProps>(\n  ({ className, size = \"md\", ...props }, ref) => {\n    const { setTheme, resolvedTheme } = useTheme();\n    const [mounted, setMounted] = React.useState(false);\n\n    React.useEffect(() => setMounted(true), []);\n\n    if (!mounted) {\n      return (\n        <button\n          ref={ref}\n          className={cn(\n            \"inline-flex items-center justify-center rounded-sm border border-input bg-background text-foreground transition-colors hover:bg-muted\",\n            size === \"sm\" && \"h-8 w-8\",\n            size === \"md\" && \"h-9 w-9\",\n            size === \"lg\" && \"h-10 w-10\",\n            className\n          )}\n          disabled\n          {...props}\n        />\n      );\n    }\n\n    return (\n      <button\n        ref={ref}\n        className={cn(\n          \"inline-flex items-center justify-center rounded-sm border border-input bg-background text-foreground transition-colors hover:bg-muted cursor-pointer\",\n          size === \"sm\" && \"h-8 w-8\",\n          size === \"md\" && \"h-9 w-9\",\n          size === \"lg\" && \"h-10 w-10\",\n          className\n        )}\n        onClick={() => setTheme(resolvedTheme === \"dark\" ? \"light\" : \"dark\")}\n        aria-label={`Switch to ${resolvedTheme === \"dark\" ? \"light\" : \"dark\"} mode`}\n        {...props}\n      >\n        {resolvedTheme === \"dark\" ? (\n          <Sun\n            className={cn(\n              size === \"sm\" && \"h-3.5 w-3.5\",\n              size === \"md\" && \"h-4 w-4\",\n              size === \"lg\" && \"h-5 w-5\"\n            )}\n          />\n        ) : (\n          <Moon\n            className={cn(\n              size === \"sm\" && \"h-3.5 w-3.5\",\n              size === \"md\" && \"h-4 w-4\",\n              size === \"lg\" && \"h-5 w-5\"\n            )}\n          />\n        )}\n      </button>\n    );\n  }\n);\n\nThemeToggle.displayName = \"ThemeToggle\";\n\nexport { ThemeToggle, type ThemeToggleProps };\n",
+      "type": "registry:component",
+      "target": "components/newspapercn/theme-toggle.tsx"
+    }
+  ],
+  "type": "registry:block"
+}
