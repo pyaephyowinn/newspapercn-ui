@@ -17,11 +17,11 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       {/* Top thin rule */}
       <div className="h-px bg-foreground/20" />
 
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-7xl px-4">
         {/* Main header row */}
         <div className="flex h-14 items-center justify-between">
           {/* Logo — editorial nameplate style */}
