@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { TableOfContents } from "@/components/table-of-contents";
+import { ComponentPreview } from "@/components/component-preview";
 import { componentDocs, getComponentBySlug } from "@/lib/component-docs";
+import { getComponentDemo } from "@/lib/component-demos";
 
 export function generateStaticParams() {
   return componentDocs.map((c) => ({ slug: c.slug }));
@@ -32,8 +34,11 @@ export default async function ComponentPage({
     "base-themed": "Base Themed",
   }[component.category];
 
+  const demo = getComponentDemo(slug);
+
   // Build TOC sections from available content
   const tocSections = [
+    ...(demo ? [{ id: "preview", label: "Preview" }] : []),
     ...(component.installCommand
       ? [{ id: "installation", label: "Installation" }]
       : []),
@@ -57,6 +62,19 @@ export default async function ComponentPage({
           <h1 className="text-4xl font-bold mb-2">{component.name}</h1>
           <p className="text-muted-foreground">{component.description}</p>
         </div>
+
+        {/* Preview */}
+        {demo && (
+          <>
+            <Separator />
+            <section className="space-y-3">
+              <h2 id="preview" className="text-2xl font-bold scroll-mt-20">
+                Preview
+              </h2>
+              <ComponentPreview demo={demo.demo} code={demo.code} />
+            </section>
+          </>
+        )}
 
         {/* Install command */}
         {component.installCommand && (

@@ -1,0 +1,750 @@
+import * as React from "react";
+
+// Custom components
+import { Masthead } from "@/registry/newspapercn/custom/masthead";
+import { WantedPoster } from "@/registry/newspapercn/custom/wanted-poster";
+import { HeadlineBanner } from "@/registry/newspapercn/custom/headline-banner";
+import { ColumnLayout } from "@/registry/newspapercn/custom/column-layout";
+import { NewsCooBadge } from "@/registry/newspapercn/custom/news-coo-badge";
+import { LogPoseNav } from "@/registry/newspapercn/custom/log-pose-nav";
+import { BountyTable } from "@/registry/newspapercn/custom/bounty-table";
+import { DenDenMushi } from "@/registry/newspapercn/custom/den-den-mushi";
+import { PoneglyphCode } from "@/registry/newspapercn/custom/poneglyph-code";
+
+// Base components
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { Progress } from "@/components/ui/progress";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { AlertTriangle, Newspaper, Bell } from "lucide-react";
+
+interface ComponentDemo {
+  demo: React.ReactNode;
+  code: string;
+}
+
+export const componentDemos: Record<string, ComponentDemo> = {
+  // ══════════════════════════════
+  // CUSTOM COMPONENTS
+  // ══════════════════════════════
+
+  masthead: {
+    demo: (
+      <Masthead
+        title="Grand Line Gazette"
+        tagline="All the News That's Fit to Print"
+        date={new Date()}
+        volume={1}
+        issueNumber={1}
+        variant="compact"
+      />
+    ),
+    code: `<Masthead
+  title="Grand Line Gazette"
+  tagline="All the News That's Fit to Print"
+  date={new Date()}
+  volume={1}
+  issueNumber={1}
+/>`,
+  },
+
+  "wanted-poster": {
+    demo: (
+      <WantedPoster
+        name="Monkey D. Luffy"
+        epithet="Straw Hat"
+        bounty={3000000000}
+        image={
+          <div className="w-full h-full bg-secondary flex items-center justify-center text-4xl">
+            🏴‍☠️
+          </div>
+        }
+        size="sm"
+      />
+    ),
+    code: `<WantedPoster
+  name="Monkey D. Luffy"
+  epithet="Straw Hat"
+  bounty={3_000_000_000}
+  image={<img src="/luffy.png" alt="Luffy" />}
+  size="sm"
+/>`,
+  },
+
+  "headline-banner": {
+    demo: (
+      <div className="w-full space-y-2">
+        <HeadlineBanner headline="Straw Hat Luffy declared Fifth Emperor!" severity="breaking" />
+        <HeadlineBanner headline="New trade route opens" severity="update" prefix="UPDATE" />
+        <HeadlineBanner headline="Fair skies across East Blue" severity="bulletin" prefix="BULLETIN" />
+      </div>
+    ),
+    code: `<HeadlineBanner
+  headline="Straw Hat Luffy declared Fifth Emperor!"
+  severity="breaking"
+/>
+<HeadlineBanner
+  headline="New trade route opens"
+  severity="update"
+  prefix="UPDATE"
+/>`,
+  },
+
+  "column-layout": {
+    demo: (
+      <ColumnLayout columns={2} gap="md" rule="thin" dropCap justified>
+        <p>
+          In a stunning turn of events, the Revolutionary Army has launched a
+          coordinated assault on multiple World Government facilities across the
+          Grand Line. Sources confirm at least four key installations have been
+          compromised.
+        </p>
+        <p>
+          Fleet Admiral Sakazuki has ordered a full mobilization of Marine forces,
+          recalling all admirals from their current assignments.
+        </p>
+      </ColumnLayout>
+    ),
+    code: `<ColumnLayout columns={2} gap="md" rule="thin" dropCap justified>
+  <p>Your article content here...</p>
+  <p>More paragraphs...</p>
+</ColumnLayout>`,
+  },
+
+  "news-coo-badge": {
+    demo: (
+      <div className="flex gap-6 items-center">
+        <NewsCooBadge count={5}>
+          <Button variant="outline" size="icon"><Bell className="h-4 w-4" /></Button>
+        </NewsCooBadge>
+        <NewsCooBadge variant="dot">
+          <Button variant="outline" size="icon"><Newspaper className="h-4 w-4" /></Button>
+        </NewsCooBadge>
+        <NewsCooBadge variant="new" animate>
+          <Button variant="outline" size="icon"><Newspaper className="h-4 w-4" /></Button>
+        </NewsCooBadge>
+        <NewsCooBadge variant="icon">
+          <Avatar><AvatarFallback>ML</AvatarFallback></Avatar>
+        </NewsCooBadge>
+      </div>
+    ),
+    code: `<NewsCooBadge count={5}>
+  <Button variant="outline" size="icon">
+    <Bell />
+  </Button>
+</NewsCooBadge>
+
+<NewsCooBadge variant="new" animate>
+  <Button variant="outline" size="icon">
+    <Newspaper />
+  </Button>
+</NewsCooBadge>`,
+  },
+
+  "log-pose-nav": {
+    demo: (
+      <div className="space-y-6">
+        <LogPoseNav
+          variant="linear"
+          items={[
+            { label: "East Blue", href: "#" },
+            { label: "Grand Line", href: "#" },
+            { label: "New World", href: "#", active: true },
+            { label: "Laugh Tale", href: "#" },
+          ]}
+        />
+      </div>
+    ),
+    code: `<LogPoseNav
+  variant="linear"
+  items={[
+    { label: "East Blue", href: "#" },
+    { label: "Grand Line", href: "#" },
+    { label: "New World", href: "#", active: true },
+    { label: "Laugh Tale", href: "#" },
+  ]}
+/>`,
+  },
+
+  "bounty-table": {
+    demo: (
+      <BountyTable
+        entries={[
+          { name: "Monkey D. Luffy", epithet: "Straw Hat", crew: "Straw Hat Pirates", bounty: 3000000000, status: "increased" },
+          { name: "Trafalgar Law", epithet: "Surgeon of Death", crew: "Heart Pirates", bounty: 3000000000, status: "new" },
+          { name: "Buggy", epithet: "The Genius Jester", crew: "Cross Guild", bounty: 3189000000 },
+        ]}
+      />
+    ),
+    code: `<BountyTable
+  entries={[
+    { name: "Monkey D. Luffy", epithet: "Straw Hat",
+      crew: "Straw Hat Pirates", bounty: 3_000_000_000,
+      status: "increased" },
+    { name: "Trafalgar Law", epithet: "Surgeon of Death",
+      crew: "Heart Pirates", bounty: 3_000_000_000,
+      status: "new" },
+  ]}
+/>`,
+  },
+
+  "den-den-mushi": {
+    demo: (
+      <DenDenMushi
+        variant="chat"
+        messages={[
+          { content: "Luffy! Where are you?!", sender: "Nami", direction: "incoming", timestamp: "10:32" },
+          { content: "Shishishi! I found meat!", sender: "Luffy", direction: "outgoing", timestamp: "10:33" },
+          { content: "We need to leave NOW!", sender: "Nami", direction: "incoming", timestamp: "10:33" },
+        ]}
+      />
+    ),
+    code: `<DenDenMushi
+  variant="chat"
+  messages={[
+    { content: "Luffy! Where are you?!",
+      sender: "Nami", direction: "incoming" },
+    { content: "Shishishi! I found meat!",
+      sender: "Luffy", direction: "outgoing" },
+  ]}
+/>`,
+  },
+
+  "poneglyph-code": {
+    demo: (
+      <PoneglyphCode
+        language="typescript"
+        showLineNumbers
+        code={`import { WantedPoster } from "newspapercn-ui";
+
+export function BountyCard() {
+  return (
+    <WantedPoster
+      name="Monkey D. Luffy"
+      bounty={3_000_000_000}
+    />
+  );
+}`}
+      />
+    ),
+    code: `<PoneglyphCode
+  language="typescript"
+  showLineNumbers
+  code={\`import { WantedPoster } from "newspapercn-ui";
+...\`}
+/>`,
+  },
+
+  // ══════════════════════════════
+  // BASE WITH VARIANTS
+  // ══════════════════════════════
+
+  button: {
+    demo: (
+      <div className="flex flex-wrap gap-3">
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="accent">Accent</Button>
+        <Button variant="destructive">Destructive</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="newspaper">Editorial</Button>
+        <Button variant="link">Link</Button>
+      </div>
+    ),
+    code: `<Button>Primary</Button>
+<Button variant="accent">Accent</Button>
+<Button variant="newspaper">Editorial</Button>`,
+  },
+
+  badge: {
+    demo: (
+      <div className="flex flex-wrap gap-2 items-center">
+        <Badge>Default</Badge>
+        <Badge variant="secondary">Secondary</Badge>
+        <Badge variant="destructive">Destructive</Badge>
+        <Badge variant="outline">Outline</Badge>
+        <Badge variant="section">Politics</Badge>
+        <Badge variant="breaking">Breaking</Badge>
+      </div>
+    ),
+    code: `<Badge variant="section">Politics</Badge>
+<Badge variant="breaking">Breaking</Badge>`,
+  },
+
+  card: {
+    demo: (
+      <div className="grid grid-cols-3 gap-3 w-full">
+        <Card>
+          <CardHeader><CardTitle>Default</CardTitle><CardDescription>Standard card</CardDescription></CardHeader>
+          <CardContent><p className="text-sm">Card content here.</p></CardContent>
+        </Card>
+        <Card variant="article">
+          <CardHeader><CardTitle>Article</CardTitle><CardDescription>Left border</CardDescription></CardHeader>
+          <CardContent><p className="text-sm">Article content.</p></CardContent>
+        </Card>
+        <Card variant="featured">
+          <CardHeader><CardTitle>Featured</CardTitle><CardDescription>Top accent</CardDescription></CardHeader>
+          <CardContent><p className="text-sm">Featured content.</p></CardContent>
+        </Card>
+      </div>
+    ),
+    code: `<Card variant="article">
+  <CardHeader>
+    <CardTitle>Article</CardTitle>
+  </CardHeader>
+  <CardContent>Content</CardContent>
+</Card>`,
+  },
+
+  alert: {
+    demo: (
+      <div className="w-full space-y-3">
+        <Alert>
+          <Newspaper className="h-4 w-4" />
+          <AlertTitle>Default</AlertTitle>
+          <AlertDescription>Standard alert message.</AlertDescription>
+        </Alert>
+        <Alert variant="breaking">
+          <AlertTriangle className="h-4 w-4" />
+          <AlertTitle>BREAKING</AlertTitle>
+          <AlertDescription>Urgent breaking news alert.</AlertDescription>
+        </Alert>
+        <Alert variant="correction">
+          <Newspaper className="h-4 w-4" />
+          <AlertTitle>Editor&apos;s Correction</AlertTitle>
+          <AlertDescription>A correction to an earlier report.</AlertDescription>
+        </Alert>
+      </div>
+    ),
+    code: `<Alert variant="breaking">
+  <AlertTitle>BREAKING</AlertTitle>
+  <AlertDescription>Urgent alert.</AlertDescription>
+</Alert>
+<Alert variant="correction">
+  <AlertTitle>Correction</AlertTitle>
+  <AlertDescription>...</AlertDescription>
+</Alert>`,
+  },
+
+  separator: {
+    demo: (
+      <div className="w-full space-y-6">
+        <div><p className="text-xs text-muted-foreground mb-2">Default</p><Separator /></div>
+        <div><p className="text-xs text-muted-foreground mb-2">Thick</p><Separator variant="thick" /></div>
+        <div><p className="text-xs text-muted-foreground mb-2">Double</p><Separator variant="double" /></div>
+        <div><p className="text-xs text-muted-foreground mb-2">Dashed</p><Separator variant="dashed" /></div>
+        <div><p className="text-xs text-muted-foreground mb-2">Ornamental</p><Separator variant="ornamental" /></div>
+      </div>
+    ),
+    code: `<Separator variant="ornamental" />
+<Separator variant="double" />
+<Separator variant="dashed" />`,
+  },
+
+  input: {
+    demo: (
+      <div className="w-full max-w-sm space-y-4">
+        <Input placeholder="Default input" />
+        <Input variant="editorial" placeholder="Editorial input" />
+      </div>
+    ),
+    code: `<Input placeholder="Default input" />
+<Input variant="editorial" placeholder="Editorial input" />`,
+  },
+
+  textarea: {
+    demo: (
+      <div className="w-full max-w-sm space-y-4">
+        <Textarea placeholder="Default textarea" rows={3} />
+        <Textarea variant="letter" placeholder="Letter variant" rows={3} />
+      </div>
+    ),
+    code: `<Textarea placeholder="Default" />
+<Textarea variant="letter" placeholder="Letter variant" />`,
+  },
+
+  checkbox: {
+    demo: (
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <Checkbox id="demo-c1" defaultChecked />
+          <Label htmlFor="demo-c1">Default checkbox</Label>
+        </div>
+        <div className="flex items-center gap-2">
+          <Checkbox id="demo-c2" variant="ballot" defaultChecked />
+          <Label htmlFor="demo-c2" className="font-serif">Ballot checkbox</Label>
+        </div>
+      </div>
+    ),
+    code: `<Checkbox variant="ballot" />`,
+  },
+
+  progress: {
+    demo: (
+      <div className="w-full space-y-4">
+        <div><p className="text-xs text-muted-foreground mb-2">Default</p><Progress value={65} /></div>
+        <div><p className="text-xs text-muted-foreground mb-2">Inkfill</p><Progress variant="inkfill" value={65} /></div>
+      </div>
+    ),
+    code: `<Progress value={65} />
+<Progress variant="inkfill" value={65} />`,
+  },
+
+  skeleton: {
+    demo: (
+      <div className="w-full grid grid-cols-2 gap-6">
+        <div><p className="text-xs text-muted-foreground mb-2">Default</p><div className="space-y-2"><Skeleton className="h-4 w-3/4" /><Skeleton className="h-4 w-full" /><Skeleton className="h-4 w-5/6" /></div></div>
+        <div><p className="text-xs text-muted-foreground mb-2">Newsprint</p><div className="space-y-2"><Skeleton variant="newsprint" className="h-4 w-3/4" /><Skeleton variant="newsprint" className="h-4 w-full" /><Skeleton variant="newsprint" className="h-4 w-5/6" /></div></div>
+      </div>
+    ),
+    code: `<Skeleton variant="newsprint" className="h-4 w-3/4" />`,
+  },
+
+  accordion: {
+    demo: (
+      <div className="w-full grid grid-cols-2 gap-6">
+        <div>
+          <p className="text-xs text-muted-foreground mb-2">Default</p>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="1"><AccordionTrigger>What is the Grand Line?</AccordionTrigger><AccordionContent>The Grand Line is the ocean current running perpendicular to the Red Line.</AccordionContent></AccordionItem>
+            <AccordionItem value="2"><AccordionTrigger>Who are the Yonko?</AccordionTrigger><AccordionContent>The Four Emperors ruling the New World.</AccordionContent></AccordionItem>
+          </Accordion>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground mb-2">Newspaper</p>
+          <Accordion type="single" collapsible variant="newspaper">
+            <AccordionItem value="1"><AccordionTrigger>What is the Grand Line?</AccordionTrigger><AccordionContent>The Grand Line is the ocean current running perpendicular to the Red Line.</AccordionContent></AccordionItem>
+            <AccordionItem value="2"><AccordionTrigger>Who are the Yonko?</AccordionTrigger><AccordionContent>The Four Emperors ruling the New World.</AccordionContent></AccordionItem>
+          </Accordion>
+        </div>
+      </div>
+    ),
+    code: `<Accordion type="single" collapsible variant="newspaper">
+  <AccordionItem value="1">
+    <AccordionTrigger>Question?</AccordionTrigger>
+    <AccordionContent>Answer.</AccordionContent>
+  </AccordionItem>
+</Accordion>`,
+  },
+
+  select: {
+    demo: (
+      <div className="flex gap-6">
+        <div>
+          <p className="text-xs text-muted-foreground mb-2">Default</p>
+          <Select><SelectTrigger className="w-40"><SelectValue placeholder="Select sea" /></SelectTrigger><SelectContent><SelectItem value="east">East Blue</SelectItem><SelectItem value="west">West Blue</SelectItem></SelectContent></Select>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground mb-2">Classified</p>
+          <Select><SelectTrigger variant="classified" className="w-40"><SelectValue placeholder="Select sea" /></SelectTrigger><SelectContent><SelectItem value="east">East Blue</SelectItem><SelectItem value="west">West Blue</SelectItem></SelectContent></Select>
+        </div>
+      </div>
+    ),
+    code: `<Select>
+  <SelectTrigger variant="classified">
+    <SelectValue placeholder="Select sea" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="east">East Blue</SelectItem>
+  </SelectContent>
+</Select>`,
+  },
+
+  pagination: {
+    demo: (
+      <div className="w-full space-y-4">
+        <div><p className="text-xs text-muted-foreground mb-2">Default</p>
+          <Pagination><PaginationContent><PaginationItem><PaginationPrevious href="#" /></PaginationItem><PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem><PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem><PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem><PaginationItem><PaginationNext href="#" /></PaginationItem></PaginationContent></Pagination>
+        </div>
+        <div><p className="text-xs text-muted-foreground mb-2">Editorial</p>
+          <Pagination><PaginationContent><PaginationItem><PaginationPrevious href="#" variant="editorial" /></PaginationItem><PaginationItem><PaginationLink href="#" variant="editorial">1</PaginationLink></PaginationItem><PaginationItem><PaginationLink href="#" variant="editorial" isActive>2</PaginationLink></PaginationItem><PaginationItem><PaginationLink href="#" variant="editorial">3</PaginationLink></PaginationItem><PaginationItem><PaginationNext href="#" variant="editorial" /></PaginationItem></PaginationContent></Pagination>
+        </div>
+      </div>
+    ),
+    code: `<PaginationLink variant="editorial" isActive>2</PaginationLink>
+<PaginationPrevious variant="editorial" />`,
+  },
+
+  // ══════════════════════════════
+  // BASE THEMED
+  // ══════════════════════════════
+
+  avatar: {
+    demo: (
+      <div className="flex gap-3 items-center">
+        <Avatar><AvatarFallback>ML</AvatarFallback></Avatar>
+        <Avatar><AvatarFallback>ZR</AvatarFallback></Avatar>
+        <Avatar><AvatarFallback>NM</AvatarFallback></Avatar>
+      </div>
+    ),
+    code: `<Avatar><AvatarFallback>ML</AvatarFallback></Avatar>`,
+  },
+
+  table: {
+    demo: (
+      <div className="w-full text-sm">
+        <table className="w-full">
+          <thead><tr className="border-b-2 border-foreground"><th className="py-2 pr-4 text-left font-serif font-bold text-xs uppercase">Pirate</th><th className="py-2 text-right font-serif font-bold text-xs uppercase">Bounty</th></tr></thead>
+          <tbody>
+            <tr className="border-b border-border/50"><td className="py-2 pr-4 font-serif font-bold">Gol D. Roger</td><td className="py-2 text-right font-mono">฿5,564,800,000</td></tr>
+            <tr className="border-b border-border/50"><td className="py-2 pr-4 font-serif font-bold">Edward Newgate</td><td className="py-2 text-right font-mono">฿5,046,000,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    ),
+    code: `<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Pirate</TableHead>
+      <TableHead>Bounty</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>...</TableBody>
+</Table>`,
+  },
+
+  tabs: {
+    demo: (
+      <Tabs defaultValue="politics" className="w-full">
+        <TabsList><TabsTrigger value="politics">Politics</TabsTrigger><TabsTrigger value="sports">Sports</TabsTrigger></TabsList>
+        <TabsContent value="politics" className="mt-3"><p className="text-sm">Reverie delegates demand naval reform.</p></TabsContent>
+        <TabsContent value="sports" className="mt-3"><p className="text-sm">Davy Back Fight championship results.</p></TabsContent>
+      </Tabs>
+    ),
+    code: `<Tabs defaultValue="politics">
+  <TabsList>
+    <TabsTrigger value="politics">Politics</TabsTrigger>
+    <TabsTrigger value="sports">Sports</TabsTrigger>
+  </TabsList>
+  <TabsContent value="politics">...</TabsContent>
+</Tabs>`,
+  },
+
+  label: {
+    demo: (
+      <div className="space-y-2">
+        <Label htmlFor="demo-name">Your Name</Label>
+        <Input id="demo-name" placeholder="Enter your name" />
+      </div>
+    ),
+    code: `<Label htmlFor="name">Your Name</Label>
+<Input id="name" placeholder="Enter your name" />`,
+  },
+
+  switch: {
+    demo: (
+      <div className="flex items-center gap-2">
+        <Switch id="demo-switch" />
+        <Label htmlFor="demo-switch">Enable notifications</Label>
+      </div>
+    ),
+    code: `<Switch id="notify" />
+<Label htmlFor="notify">Enable notifications</Label>`,
+  },
+
+  "radio-group": {
+    demo: (
+      <RadioGroup defaultValue="east">
+        <div className="flex items-center gap-2"><RadioGroupItem value="east" id="r1" /><Label htmlFor="r1">East Blue</Label></div>
+        <div className="flex items-center gap-2"><RadioGroupItem value="grand" id="r2" /><Label htmlFor="r2">Grand Line</Label></div>
+        <div className="flex items-center gap-2"><RadioGroupItem value="new" id="r3" /><Label htmlFor="r3">New World</Label></div>
+      </RadioGroup>
+    ),
+    code: `<RadioGroup defaultValue="east">
+  <RadioGroupItem value="east" id="r1" />
+  <Label htmlFor="r1">East Blue</Label>
+</RadioGroup>`,
+  },
+
+  breadcrumb: {
+    demo: (
+      <nav className="text-sm text-muted-foreground">
+        <ol className="flex items-center gap-1.5">
+          <li><a href="#" className="hover:text-foreground">Home</a></li>
+          <li className="select-none">/</li>
+          <li><a href="#" className="hover:text-foreground">Docs</a></li>
+          <li className="select-none">/</li>
+          <li className="text-foreground font-medium">Components</li>
+        </ol>
+      </nav>
+    ),
+    code: `<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbPage>Components</BreadcrumbPage></BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>`,
+  },
+
+  calendar: {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Calendar renders with the newspaper theme&apos;s serif fonts and sharp corners. Import and use as standard shadcn Calendar.</p>
+    ),
+    code: `<Calendar mode="single" selected={date} onSelect={setDate} />`,
+  },
+
+  "context-menu": {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Right-click context menu. Themed with newspaper colors and serif fonts.</p>
+    ),
+    code: `<ContextMenu>
+  <ContextMenuTrigger>Right click here</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Read Article</ContextMenuItem>
+    <ContextMenuItem>Save for Later</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>`,
+  },
+
+  dialog: {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Modal dialog with parchment background and newspaper styling. Use as standard shadcn Dialog.</p>
+    ),
+    code: `<Dialog>
+  <DialogTrigger asChild><Button>Open</Button></DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Breaking News</DialogTitle>
+      <DialogDescription>Details here...</DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>`,
+  },
+
+  "dropdown-menu": {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Dropdown menu with newspaper theme colors. Use as standard shadcn DropdownMenu.</p>
+    ),
+    code: `<DropdownMenu>
+  <DropdownMenuTrigger asChild><Button>Menu</Button></DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>World News</DropdownMenuItem>
+    <DropdownMenuItem>Sports</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`,
+  },
+
+  "hover-card": {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Hover card with parchment popover styling. Use as standard shadcn HoverCard.</p>
+    ),
+    code: `<HoverCard>
+  <HoverCardTrigger>Hover me</HoverCardTrigger>
+  <HoverCardContent>
+    Preview content here
+  </HoverCardContent>
+</HoverCard>`,
+  },
+
+  menubar: {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Horizontal menu bar with newspaper theme. Use as standard shadcn Menubar.</p>
+    ),
+    code: `<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>New Article</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>`,
+  },
+
+  "navigation-menu": {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Navigation menu with newspaper serif styling. Use as standard shadcn NavigationMenu.</p>
+    ),
+    code: `<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuLink href="/docs">Docs</NavigationMenuLink>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>`,
+  },
+
+  popover: {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Popover with cream parchment background. Use as standard shadcn Popover.</p>
+    ),
+    code: `<Popover>
+  <PopoverTrigger asChild><Button>Open</Button></PopoverTrigger>
+  <PopoverContent>Content here</PopoverContent>
+</Popover>`,
+  },
+
+  "scroll-area": {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Custom scrollable area with newspaper-themed scrollbar. Use as standard shadcn ScrollArea.</p>
+    ),
+    code: `<ScrollArea className="h-48">
+  <div>Long content here...</div>
+</ScrollArea>`,
+  },
+
+  sheet: {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Side sheet/drawer with parchment background. Use as standard shadcn Sheet.</p>
+    ),
+    code: `<Sheet>
+  <SheetTrigger asChild><Button>Open</Button></SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Article Details</SheetTitle>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>`,
+  },
+
+  "sidebar-component": {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Application sidebar with newspaper theme colors. Use as standard shadcn Sidebar.</p>
+    ),
+    code: `<SidebarProvider>
+  <Sidebar>
+    <SidebarContent>...</SidebarContent>
+  </Sidebar>
+</SidebarProvider>`,
+  },
+
+  sonner: {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Toast notifications with newspaper styling. Use Sonner&apos;s toast() function.</p>
+    ),
+    code: `import { toast } from "sonner";
+
+toast("Breaking News!", {
+  description: "New bounty update released.",
+});`,
+  },
+
+  tooltip: {
+    demo: (
+      <p className="text-sm text-muted-foreground italic">Tooltip with newspaper popover styling. Wrap app with TooltipProvider.</p>
+    ),
+    code: `<Tooltip>
+  <TooltipTrigger>Hover me</TooltipTrigger>
+  <TooltipContent>Tooltip text</TooltipContent>
+</Tooltip>`,
+  },
+};
+
+export function getComponentDemo(slug: string): ComponentDemo | undefined {
+  return componentDemos[slug];
+}
