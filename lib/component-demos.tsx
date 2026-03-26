@@ -59,6 +59,7 @@ export const componentDemos: Record<string, ComponentDemo> = {
   date={new Date()}
   volume={1}
   issueNumber={1}
+  variant="compact"
 />`,
   },
 
@@ -79,8 +80,12 @@ export const componentDemos: Record<string, ComponentDemo> = {
     code: `<WantedPoster
   name="Monkey D. Luffy"
   epithet="Straw Hat"
-  bounty={3_000_000_000}
-  image={<img src="/luffy.png" alt="Luffy" />}
+  bounty={3000000000}
+  image={
+    <div className="w-full h-full bg-secondary flex items-center justify-center text-4xl">
+      🏴‍☠️
+    </div>
+  }
   size="sm"
 />`,
   },
@@ -93,15 +98,9 @@ export const componentDemos: Record<string, ComponentDemo> = {
         <HeadlineBanner headline="Fair skies across East Blue" severity="bulletin" prefix="BULLETIN" />
       </div>
     ),
-    code: `<HeadlineBanner
-  headline="Straw Hat Luffy declared Fifth Emperor!"
-  severity="breaking"
-/>
-<HeadlineBanner
-  headline="New trade route opens"
-  severity="update"
-  prefix="UPDATE"
-/>`,
+    code: `<HeadlineBanner headline="Straw Hat Luffy declared Fifth Emperor!" severity="breaking" />
+<HeadlineBanner headline="New trade route opens" severity="update" prefix="UPDATE" />
+<HeadlineBanner headline="Fair skies across East Blue" severity="bulletin" prefix="BULLETIN" />`,
   },
 
   "column-layout": {
@@ -120,8 +119,16 @@ export const componentDemos: Record<string, ComponentDemo> = {
       </ColumnLayout>
     ),
     code: `<ColumnLayout columns={2} gap="md" rule="thin" dropCap justified>
-  <p>Your article content here...</p>
-  <p>More paragraphs...</p>
+  <p>
+    In a stunning turn of events, the Revolutionary Army has launched a
+    coordinated assault on multiple World Government facilities across the
+    Grand Line. Sources confirm at least four key installations have been
+    compromised.
+  </p>
+  <p>
+    Fleet Admiral Sakazuki has ordered a full mobilization of Marine forces,
+    recalling all admirals from their current assignments.
+  </p>
 </ColumnLayout>`,
   },
 
@@ -143,31 +150,30 @@ export const componentDemos: Record<string, ComponentDemo> = {
       </div>
     ),
     code: `<NewsCooBadge count={5}>
-  <Button variant="outline" size="icon">
-    <Bell />
-  </Button>
+  <Button variant="outline" size="icon"><Bell className="h-4 w-4" /></Button>
 </NewsCooBadge>
-
+<NewsCooBadge variant="dot">
+  <Button variant="outline" size="icon"><Newspaper className="h-4 w-4" /></Button>
+</NewsCooBadge>
 <NewsCooBadge variant="new" animate>
-  <Button variant="outline" size="icon">
-    <Newspaper />
-  </Button>
+  <Button variant="outline" size="icon"><Newspaper className="h-4 w-4" /></Button>
+</NewsCooBadge>
+<NewsCooBadge variant="icon">
+  <Avatar><AvatarFallback>ML</AvatarFallback></Avatar>
 </NewsCooBadge>`,
   },
 
   "log-pose-nav": {
     demo: (
-      <div className="space-y-6">
-        <LogPoseNav
-          variant="linear"
-          items={[
-            { label: "East Blue", href: "#" },
-            { label: "Grand Line", href: "#" },
-            { label: "New World", href: "#", active: true },
-            { label: "Laugh Tale", href: "#" },
-          ]}
-        />
-      </div>
+      <LogPoseNav
+        variant="linear"
+        items={[
+          { label: "East Blue", href: "#" },
+          { label: "Grand Line", href: "#" },
+          { label: "New World", href: "#", active: true },
+          { label: "Laugh Tale", href: "#" },
+        ]}
+      />
     ),
     code: `<LogPoseNav
   variant="linear"
@@ -192,12 +198,9 @@ export const componentDemos: Record<string, ComponentDemo> = {
     ),
     code: `<BountyTable
   entries={[
-    { name: "Monkey D. Luffy", epithet: "Straw Hat",
-      crew: "Straw Hat Pirates", bounty: 3_000_000_000,
-      status: "increased" },
-    { name: "Trafalgar Law", epithet: "Surgeon of Death",
-      crew: "Heart Pirates", bounty: 3_000_000_000,
-      status: "new" },
+    { name: "Monkey D. Luffy", epithet: "Straw Hat", crew: "Straw Hat Pirates", bounty: 3000000000, status: "increased" },
+    { name: "Trafalgar Law", epithet: "Surgeon of Death", crew: "Heart Pirates", bounty: 3000000000, status: "new" },
+    { name: "Buggy", epithet: "The Genius Jester", crew: "Cross Guild", bounty: 3189000000 },
   ]}
 />`,
   },
@@ -216,10 +219,9 @@ export const componentDemos: Record<string, ComponentDemo> = {
     code: `<DenDenMushi
   variant="chat"
   messages={[
-    { content: "Luffy! Where are you?!",
-      sender: "Nami", direction: "incoming" },
-    { content: "Shishishi! I found meat!",
-      sender: "Luffy", direction: "outgoing" },
+    { content: "Luffy! Where are you?!", sender: "Nami", direction: "incoming", timestamp: "10:32" },
+    { content: "Shishishi! I found meat!", sender: "Luffy", direction: "outgoing", timestamp: "10:33" },
+    { content: "We need to leave NOW!", sender: "Nami", direction: "incoming", timestamp: "10:33" },
   ]}
 />`,
   },
@@ -245,7 +247,15 @@ export function BountyCard() {
   language="typescript"
   showLineNumbers
   code={\`import { WantedPoster } from "newspapercn-ui";
-...\`}
+
+export function BountyCard() {
+  return (
+    <WantedPoster
+      name="Monkey D. Luffy"
+      bounty={3_000_000_000}
+    />
+  );
+}\`}
 />`,
   },
 
@@ -267,8 +277,13 @@ export function BountyCard() {
       </div>
     ),
     code: `<Button>Primary</Button>
+<Button variant="secondary">Secondary</Button>
 <Button variant="accent">Accent</Button>
-<Button variant="newspaper">Editorial</Button>`,
+<Button variant="destructive">Destructive</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="newspaper">Editorial</Button>
+<Button variant="link">Link</Button>`,
   },
 
   badge: {
@@ -282,7 +297,11 @@ export function BountyCard() {
         <Badge variant="breaking">Breaking</Badge>
       </div>
     ),
-    code: `<Badge variant="section">Politics</Badge>
+    code: `<Badge>Default</Badge>
+<Badge variant="secondary">Secondary</Badge>
+<Badge variant="destructive">Destructive</Badge>
+<Badge variant="outline">Outline</Badge>
+<Badge variant="section">Politics</Badge>
 <Badge variant="breaking">Breaking</Badge>`,
   },
 
@@ -303,11 +322,17 @@ export function BountyCard() {
         </Card>
       </div>
     ),
-    code: `<Card variant="article">
-  <CardHeader>
-    <CardTitle>Article</CardTitle>
-  </CardHeader>
-  <CardContent>Content</CardContent>
+    code: `<Card>
+  <CardHeader><CardTitle>Default</CardTitle><CardDescription>Standard card</CardDescription></CardHeader>
+  <CardContent><p>Card content here.</p></CardContent>
+</Card>
+<Card variant="article">
+  <CardHeader><CardTitle>Article</CardTitle><CardDescription>Left border</CardDescription></CardHeader>
+  <CardContent><p>Article content.</p></CardContent>
+</Card>
+<Card variant="featured">
+  <CardHeader><CardTitle>Featured</CardTitle><CardDescription>Top accent</CardDescription></CardHeader>
+  <CardContent><p>Featured content.</p></CardContent>
 </Card>`,
   },
 
@@ -331,13 +356,20 @@ export function BountyCard() {
         </Alert>
       </div>
     ),
-    code: `<Alert variant="breaking">
+    code: `<Alert>
+  <Newspaper className="h-4 w-4" />
+  <AlertTitle>Default</AlertTitle>
+  <AlertDescription>Standard alert message.</AlertDescription>
+</Alert>
+<Alert variant="breaking">
+  <AlertTriangle className="h-4 w-4" />
   <AlertTitle>BREAKING</AlertTitle>
-  <AlertDescription>Urgent alert.</AlertDescription>
+  <AlertDescription>Urgent breaking news alert.</AlertDescription>
 </Alert>
 <Alert variant="correction">
-  <AlertTitle>Correction</AlertTitle>
-  <AlertDescription>...</AlertDescription>
+  <Newspaper className="h-4 w-4" />
+  <AlertTitle>Editor's Correction</AlertTitle>
+  <AlertDescription>A correction to an earlier report.</AlertDescription>
 </Alert>`,
   },
 
@@ -351,9 +383,11 @@ export function BountyCard() {
         <div><p className="text-xs text-muted-foreground mb-2">Ornamental</p><Separator variant="ornamental" /></div>
       </div>
     ),
-    code: `<Separator variant="ornamental" />
+    code: `<Separator />
+<Separator variant="thick" />
 <Separator variant="double" />
-<Separator variant="dashed" />`,
+<Separator variant="dashed" />
+<Separator variant="ornamental" />`,
   },
 
   input: {
@@ -374,8 +408,8 @@ export function BountyCard() {
         <Textarea variant="letter" placeholder="Letter variant" rows={3} />
       </div>
     ),
-    code: `<Textarea placeholder="Default" />
-<Textarea variant="letter" placeholder="Letter variant" />`,
+    code: `<Textarea placeholder="Default textarea" rows={3} />
+<Textarea variant="letter" placeholder="Letter variant" rows={3} />`,
   },
 
   checkbox: {
@@ -391,7 +425,14 @@ export function BountyCard() {
         </div>
       </div>
     ),
-    code: `<Checkbox variant="ballot" />`,
+    code: `<div className="flex items-center gap-2">
+  <Checkbox id="c1" defaultChecked />
+  <Label htmlFor="c1">Default checkbox</Label>
+</div>
+<div className="flex items-center gap-2">
+  <Checkbox id="c2" variant="ballot" defaultChecked />
+  <Label htmlFor="c2" className="font-serif">Ballot checkbox</Label>
+</div>`,
   },
 
   progress: {
@@ -408,11 +449,33 @@ export function BountyCard() {
   skeleton: {
     demo: (
       <div className="w-full grid grid-cols-2 gap-6">
-        <div><p className="text-xs text-muted-foreground mb-2">Default</p><div className="space-y-2"><Skeleton className="h-4 w-3/4" /><Skeleton className="h-4 w-full" /><Skeleton className="h-4 w-5/6" /></div></div>
-        <div><p className="text-xs text-muted-foreground mb-2">Newsprint</p><div className="space-y-2"><Skeleton variant="newsprint" className="h-4 w-3/4" /><Skeleton variant="newsprint" className="h-4 w-full" /><Skeleton variant="newsprint" className="h-4 w-5/6" /></div></div>
+        <div>
+          <p className="text-xs text-muted-foreground mb-2">Default</p>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-3/4" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-5/6" />
+          </div>
+        </div>
+        <div>
+          <p className="text-xs text-muted-foreground mb-2">Newsprint</p>
+          <div className="space-y-2">
+            <Skeleton variant="newsprint" className="h-4 w-3/4" />
+            <Skeleton variant="newsprint" className="h-4 w-full" />
+            <Skeleton variant="newsprint" className="h-4 w-5/6" />
+          </div>
+        </div>
       </div>
     ),
-    code: `<Skeleton variant="newsprint" className="h-4 w-3/4" />`,
+    code: `{/* Default */}
+<Skeleton className="h-4 w-3/4" />
+<Skeleton className="h-4 w-full" />
+<Skeleton className="h-4 w-5/6" />
+
+{/* Newsprint */}
+<Skeleton variant="newsprint" className="h-4 w-3/4" />
+<Skeleton variant="newsprint" className="h-4 w-full" />
+<Skeleton variant="newsprint" className="h-4 w-5/6" />`,
   },
 
   accordion: {
@@ -434,10 +497,19 @@ export function BountyCard() {
         </div>
       </div>
     ),
-    code: `<Accordion type="single" collapsible variant="newspaper">
+    code: `{/* Default */}
+<Accordion type="single" collapsible>
   <AccordionItem value="1">
-    <AccordionTrigger>Question?</AccordionTrigger>
-    <AccordionContent>Answer.</AccordionContent>
+    <AccordionTrigger>What is the Grand Line?</AccordionTrigger>
+    <AccordionContent>The Grand Line is the ocean current running perpendicular to the Red Line.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+{/* Newspaper */}
+<Accordion type="single" collapsible variant="newspaper">
+  <AccordionItem value="1">
+    <AccordionTrigger>What is the Grand Line?</AccordionTrigger>
+    <AccordionContent>The Grand Line is the ocean current running perpendicular to the Red Line.</AccordionContent>
   </AccordionItem>
 </Accordion>`,
   },
@@ -455,12 +527,25 @@ export function BountyCard() {
         </div>
       </div>
     ),
-    code: `<Select>
-  <SelectTrigger variant="classified">
+    code: `{/* Default */}
+<Select>
+  <SelectTrigger className="w-40">
     <SelectValue placeholder="Select sea" />
   </SelectTrigger>
   <SelectContent>
     <SelectItem value="east">East Blue</SelectItem>
+    <SelectItem value="west">West Blue</SelectItem>
+  </SelectContent>
+</Select>
+
+{/* Classified */}
+<Select>
+  <SelectTrigger variant="classified" className="w-40">
+    <SelectValue placeholder="Select sea" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="east">East Blue</SelectItem>
+    <SelectItem value="west">West Blue</SelectItem>
   </SelectContent>
 </Select>`,
   },
@@ -468,16 +553,33 @@ export function BountyCard() {
   pagination: {
     demo: (
       <div className="w-full space-y-4">
-        <div><p className="text-xs text-muted-foreground mb-2">Default</p>
+        <div>
+          <p className="text-xs text-muted-foreground mb-2">Default</p>
           <Pagination><PaginationContent><PaginationItem><PaginationPrevious href="#" /></PaginationItem><PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem><PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem><PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem><PaginationItem><PaginationNext href="#" /></PaginationItem></PaginationContent></Pagination>
         </div>
-        <div><p className="text-xs text-muted-foreground mb-2">Editorial</p>
+        <div>
+          <p className="text-xs text-muted-foreground mb-2">Editorial</p>
           <Pagination><PaginationContent><PaginationItem><PaginationPrevious href="#" variant="editorial" /></PaginationItem><PaginationItem><PaginationLink href="#" variant="editorial">1</PaginationLink></PaginationItem><PaginationItem><PaginationLink href="#" variant="editorial" isActive>2</PaginationLink></PaginationItem><PaginationItem><PaginationLink href="#" variant="editorial">3</PaginationLink></PaginationItem><PaginationItem><PaginationNext href="#" variant="editorial" /></PaginationItem></PaginationContent></Pagination>
         </div>
       </div>
     ),
-    code: `<PaginationLink variant="editorial" isActive>2</PaginationLink>
-<PaginationPrevious variant="editorial" />`,
+    code: `{/* Default */}
+<Pagination>
+  <PaginationContent>
+    <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+    <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationNext href="#" /></PaginationItem>
+  </PaginationContent>
+</Pagination>
+
+{/* Editorial */}
+<Pagination>
+  <PaginationContent>
+    <PaginationItem><PaginationPrevious href="#" variant="editorial" /></PaginationItem>
+    <PaginationItem><PaginationLink href="#" variant="editorial" isActive>2</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationNext href="#" variant="editorial" /></PaginationItem>
+  </PaginationContent>
+</Pagination>`,
   },
 
   // ══════════════════════════════
@@ -492,7 +594,9 @@ export function BountyCard() {
         <Avatar><AvatarFallback>NM</AvatarFallback></Avatar>
       </div>
     ),
-    code: `<Avatar><AvatarFallback>ML</AvatarFallback></Avatar>`,
+    code: `<Avatar><AvatarFallback>ML</AvatarFallback></Avatar>
+<Avatar><AvatarFallback>ZR</AvatarFallback></Avatar>
+<Avatar><AvatarFallback>NM</AvatarFallback></Avatar>`,
   },
 
   table: {
@@ -511,10 +615,19 @@ export function BountyCard() {
   <TableHeader>
     <TableRow>
       <TableHead>Pirate</TableHead>
-      <TableHead>Bounty</TableHead>
+      <TableHead className="text-right">Bounty</TableHead>
     </TableRow>
   </TableHeader>
-  <TableBody>...</TableBody>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-serif font-bold">Gol D. Roger</TableCell>
+      <TableCell className="text-right font-mono">฿5,564,800,000</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-serif font-bold">Edward Newgate</TableCell>
+      <TableCell className="text-right font-mono">฿5,046,000,000</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>`,
   },
 
@@ -531,7 +644,12 @@ export function BountyCard() {
     <TabsTrigger value="politics">Politics</TabsTrigger>
     <TabsTrigger value="sports">Sports</TabsTrigger>
   </TabsList>
-  <TabsContent value="politics">...</TabsContent>
+  <TabsContent value="politics">
+    <p>Reverie delegates demand naval reform.</p>
+  </TabsContent>
+  <TabsContent value="sports">
+    <p>Davy Back Fight championship results.</p>
+  </TabsContent>
 </Tabs>`,
   },
 
@@ -566,8 +684,18 @@ export function BountyCard() {
       </RadioGroup>
     ),
     code: `<RadioGroup defaultValue="east">
-  <RadioGroupItem value="east" id="r1" />
-  <Label htmlFor="r1">East Blue</Label>
+  <div className="flex items-center gap-2">
+    <RadioGroupItem value="east" id="r1" />
+    <Label htmlFor="r1">East Blue</Label>
+  </div>
+  <div className="flex items-center gap-2">
+    <RadioGroupItem value="grand" id="r2" />
+    <Label htmlFor="r2">Grand Line</Label>
+  </div>
+  <div className="flex items-center gap-2">
+    <RadioGroupItem value="new" id="r3" />
+    <Label htmlFor="r3">New World</Label>
+  </div>
 </RadioGroup>`,
   },
 
@@ -587,6 +715,8 @@ export function BountyCard() {
   <BreadcrumbList>
     <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
     <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbLink href="/docs">Docs</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
     <BreadcrumbItem><BreadcrumbPage>Components</BreadcrumbPage></BreadcrumbItem>
   </BreadcrumbList>
 </Breadcrumb>`,
@@ -596,7 +726,9 @@ export function BountyCard() {
     demo: (
       <p className="text-sm text-muted-foreground italic">Calendar renders with the newspaper theme&apos;s serif fonts and sharp corners. Import and use as standard shadcn Calendar.</p>
     ),
-    code: `<Calendar mode="single" selected={date} onSelect={setDate} />`,
+    code: `import { Calendar } from "@/components/ui/calendar";
+
+<Calendar mode="single" selected={date} onSelect={setDate} />`,
   },
 
   "context-menu": {
@@ -614,10 +746,12 @@ export function BountyCard() {
 
   dialog: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Modal dialog with parchment background and newspaper styling. Use as standard shadcn Dialog.</p>
+      <p className="text-sm text-muted-foreground italic">Modal dialog with parchment background and newspaper styling.</p>
     ),
     code: `<Dialog>
-  <DialogTrigger asChild><Button>Open</Button></DialogTrigger>
+  <DialogTrigger asChild>
+    <Button>Open</Button>
+  </DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Breaking News</DialogTitle>
@@ -629,10 +763,12 @@ export function BountyCard() {
 
   "dropdown-menu": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Dropdown menu with newspaper theme colors. Use as standard shadcn DropdownMenu.</p>
+      <p className="text-sm text-muted-foreground italic">Dropdown menu with newspaper theme colors.</p>
     ),
     code: `<DropdownMenu>
-  <DropdownMenuTrigger asChild><Button>Menu</Button></DropdownMenuTrigger>
+  <DropdownMenuTrigger asChild>
+    <Button>Menu</Button>
+  </DropdownMenuTrigger>
   <DropdownMenuContent>
     <DropdownMenuItem>World News</DropdownMenuItem>
     <DropdownMenuItem>Sports</DropdownMenuItem>
@@ -642,7 +778,7 @@ export function BountyCard() {
 
   "hover-card": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Hover card with parchment popover styling. Use as standard shadcn HoverCard.</p>
+      <p className="text-sm text-muted-foreground italic">Hover card with parchment popover styling.</p>
     ),
     code: `<HoverCard>
   <HoverCardTrigger>Hover me</HoverCardTrigger>
@@ -654,7 +790,7 @@ export function BountyCard() {
 
   menubar: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Horizontal menu bar with newspaper theme. Use as standard shadcn Menubar.</p>
+      <p className="text-sm text-muted-foreground italic">Horizontal menu bar with newspaper theme.</p>
     ),
     code: `<Menubar>
   <MenubarMenu>
@@ -668,7 +804,7 @@ export function BountyCard() {
 
   "navigation-menu": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Navigation menu with newspaper serif styling. Use as standard shadcn NavigationMenu.</p>
+      <p className="text-sm text-muted-foreground italic">Navigation menu with newspaper serif styling.</p>
     ),
     code: `<NavigationMenu>
   <NavigationMenuList>
@@ -681,17 +817,19 @@ export function BountyCard() {
 
   popover: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Popover with cream parchment background. Use as standard shadcn Popover.</p>
+      <p className="text-sm text-muted-foreground italic">Popover with cream parchment background.</p>
     ),
     code: `<Popover>
-  <PopoverTrigger asChild><Button>Open</Button></PopoverTrigger>
+  <PopoverTrigger asChild>
+    <Button>Open</Button>
+  </PopoverTrigger>
   <PopoverContent>Content here</PopoverContent>
 </Popover>`,
   },
 
   "scroll-area": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Custom scrollable area with newspaper-themed scrollbar. Use as standard shadcn ScrollArea.</p>
+      <p className="text-sm text-muted-foreground italic">Custom scrollable area with newspaper-themed scrollbar.</p>
     ),
     code: `<ScrollArea className="h-48">
   <div>Long content here...</div>
@@ -700,10 +838,12 @@ export function BountyCard() {
 
   sheet: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Side sheet/drawer with parchment background. Use as standard shadcn Sheet.</p>
+      <p className="text-sm text-muted-foreground italic">Side sheet/drawer with parchment background.</p>
     ),
     code: `<Sheet>
-  <SheetTrigger asChild><Button>Open</Button></SheetTrigger>
+  <SheetTrigger asChild>
+    <Button>Open</Button>
+  </SheetTrigger>
   <SheetContent>
     <SheetHeader>
       <SheetTitle>Article Details</SheetTitle>
@@ -714,7 +854,7 @@ export function BountyCard() {
 
   "sidebar-component": {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Application sidebar with newspaper theme colors. Use as standard shadcn Sidebar.</p>
+      <p className="text-sm text-muted-foreground italic">Application sidebar with newspaper theme colors.</p>
     ),
     code: `<SidebarProvider>
   <Sidebar>
@@ -725,7 +865,7 @@ export function BountyCard() {
 
   sonner: {
     demo: (
-      <p className="text-sm text-muted-foreground italic">Toast notifications with newspaper styling. Use Sonner&apos;s toast() function.</p>
+      <p className="text-sm text-muted-foreground italic">Toast notifications with newspaper styling.</p>
     ),
     code: `import { toast } from "sonner";
 
