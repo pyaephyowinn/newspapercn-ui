@@ -8,7 +8,9 @@ export default function DocsLayout({
   return (
     <div className="mx-auto flex max-w-6xl px-4">
       <DocsSidebar />
-      <div className="flex-1 py-8 lg:pl-8 min-w-0">{children}</div>
+      {/* Column rule divider between sidebar and content */}
+      <div className="hidden lg:block w-px bg-border shrink-0" />
+      <div className="flex-1 py-8 lg:pl-10 min-w-0">{children}</div>
     </div>
   );
 }

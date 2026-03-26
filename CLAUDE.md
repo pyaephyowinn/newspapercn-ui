@@ -11,7 +11,7 @@ A shadcn/ui variant with a One Piece "World Economic Journal" newspaper theme �
 - **shadcn/ui** (radix-nova style) — base components, themed via CSS variables
 - **pnpm** — package manager
 - **next-themes** — dark mode
-- **@fontsource** — self-hosted fonts
+- **@fontsource** — self-hosted fonts (Playfair Display, Libre Baskerville, Montserrat)
 
 ## Project Structure
 
@@ -21,8 +21,10 @@ app/                          # Next.js app (showcase site)
   page.tsx                    # Showcase page with all components
   globals.css                 # Theme CSS variables (light + dark)
 components/
-  ui/                         # shadcn base components (installed via CLI)
+  ui/                         # 34 shadcn base components (installed via CLI)
   theme-provider.tsx          # next-themes wrapper
+hooks/
+  use-mobile.ts               # Mobile detection hook (auto-added by shadcn)
 registry/
   newspapercn/
     custom/                   # Custom One Piece components + theme
@@ -32,6 +34,10 @@ registry/
       column-layout.tsx
       news-coo-badge.tsx
       theme-toggle.tsx
+      log-pose-nav.tsx
+      bounty-table.tsx
+      den-den-mushi.tsx
+      poneglyph-code.tsx
       newspaper-theme.css     # Standalone theme file (installable)
 public/r/                     # Generated registry JSON (from `shadcn build`)
 registry.json                 # Registry manifest (defines all installable items)
@@ -53,7 +59,7 @@ pnpm registry:build   # Generate public/r/*.json from registry.json
 - **Radius:** 0.125rem (sharp editorial corners)
 - Color tokens use OKLCH format in `app/globals.css`
 
-## Registry (7 installable items)
+## Registry (11 installable items)
 
 All served from https://newspapercn-ui.vercel.app/r/
 
@@ -66,6 +72,31 @@ All served from https://newspapercn-ui.vercel.app/r/
 | headline-banner | Component | `npx shadcn@latest add .../r/headline-banner.json` |
 | column-layout | Component | `npx shadcn@latest add .../r/column-layout.json` |
 | news-coo-badge | Component | `npx shadcn@latest add .../r/news-coo-badge.json` |
+| log-pose-nav | Component | `npx shadcn@latest add .../r/log-pose-nav.json` |
+| bounty-table | Component | `npx shadcn@latest add .../r/bounty-table.json` |
+| den-den-mushi | Component | `npx shadcn@latest add .../r/den-den-mushi.json` |
+| poneglyph-code | Component | `npx shadcn@latest add .../r/poneglyph-code.json` |
+
+## Newspaper CVA Variants
+
+13 base shadcn components have newspaper-specific variants:
+
+**Tier 1:**
+- Button: `accent`, `newspaper`
+- Badge: `section`, `breaking`
+- Card: `article`, `featured`
+- Alert: `breaking`, `correction`
+- Separator: `thick`, `double`, `dashed`, `ornamental`
+- Input: `editorial`
+- Textarea: `letter`
+
+**Tier 2:**
+- Accordion: `newspaper` (serif triggers, +/− toggle)
+- Select: `classified` (dashed border, serif)
+- Progress: `inkfill` (striped track, dark ink)
+- Skeleton: `newsprint` (text-line pattern)
+- Checkbox: `ballot` (sharp square, serif ✓)
+- Pagination: `editorial` (serif, underline, « »)
 
 ## Adding a New Component
 
@@ -75,13 +106,21 @@ All served from https://newspapercn-ui.vercel.app/r/
 4. Add it to the showcase in `app/page.tsx`
 5. Commit `registry.json` + `public/r/` + component file
 
+## Adding a Newspaper Variant to a Base Component
+
+1. Read the component in `components/ui/`
+2. Add a `variant` prop (use CVA if component already uses it, otherwise add as a prop)
+3. Add the variant-specific classes using `cn()` conditionals
+4. Add a side-by-side demo (default vs variant) in `app/page.tsx`
+
 ## Conventions
 
-- All components use `forwardRef` with proper TypeScript interfaces
+- All custom components use `forwardRef` with proper TypeScript interfaces
 - Use `cn()` from `@/lib/utils` for className merging
-- Custom components go in `registry/newspapercn/custom/`, shadcn overrides in `registry/newspapercn/ui/`
-- Theme tokens are defined in `app/globals.css`, standalone copy in `registry/newspapercn/custom/newspaper-theme.css`
+- Custom components go in `registry/newspapercn/custom/`, shadcn base components in `components/ui/`
+- Theme tokens defined in `app/globals.css`, standalone copy in `registry/newspapercn/custom/newspaper-theme.css`
 - Keep both CSS files in sync when changing theme tokens
+- `.playwright-mcp/` is gitignored — don't commit Playwright logs or screenshots
 
 ## Deployment
 

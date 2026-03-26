@@ -12,9 +12,7 @@ interface SidebarSection {
 const sections: SidebarSection[] = [
   {
     title: "Getting Started",
-    items: [
-      { label: "Introduction", href: "/docs" },
-    ],
+    items: [{ label: "Introduction", href: "/docs" }],
   },
   {
     title: "Custom Components",
@@ -79,29 +77,45 @@ export function DocsSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-56 shrink-0 border-r border-border overflow-y-auto py-6 pr-4 hidden lg:block">
+    <aside className="w-52 shrink-0 overflow-y-auto py-8 pr-6 hidden lg:block">
       <nav className="space-y-6">
-        {sections.map((section) => (
+        {sections.map((section, sectionIdx) => (
           <div key={section.title}>
-            <h4 className="mb-2 text-xs font-sans font-bold uppercase tracking-wider text-muted-foreground">
+            {/* Section divider rule — skip for first section */}
+            {sectionIdx > 0 && (
+              <div className="mb-4 h-px bg-border" />
+            )}
+            <h4 className="mb-2.5 font-serif text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/50">
               {section.title}
             </h4>
-            <ul className="space-y-0.5">
-              {section.items.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "block rounded-sm px-2 py-1 text-sm transition-colors",
-                      pathname === item.href
-                        ? "bg-muted font-medium text-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+            <ul className="space-y-px">
+              {section.items.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "group relative block py-1 pl-3 text-[13px] transition-colors",
+                        isActive
+                          ? "font-medium text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      {/* Active indicator — thin left rule */}
+                      <span
+                        className={cn(
+                          "absolute left-0 top-1 bottom-1 w-[2px] transition-colors",
+                          isActive
+                            ? "bg-accent"
+                            : "bg-transparent group-hover:bg-border"
+                        )}
+                      />
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
