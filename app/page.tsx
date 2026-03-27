@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Masthead } from "@/registry/newspapercn/custom/masthead";
+
+export const metadata: Metadata = {
+  title: "newspapercn-ui — One Piece Newspaper Component Library",
+  description:
+    "A shadcn/ui variant with One Piece newspaper aesthetics. 10 custom components, 13 newspaper variants, OKLCH color tokens. Install with one CLI command.",
+};
 import { HeadlineBanner } from "@/registry/newspapercn/custom/headline-banner";
 import { LogPoseNav } from "@/registry/newspapercn/custom/log-pose-nav";
 import {

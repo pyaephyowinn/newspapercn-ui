@@ -10,9 +10,17 @@ export function generateStaticParams() {
   return componentDocs.map((c) => ({ slug: c.slug }));
 }
 
-export function generateMetadata() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const component = getComponentBySlug(slug);
+  if (!component) return {};
   return {
-    title: `newspapercn-ui`,
+    title: component.name,
+    description: component.description,
   };
 }
 

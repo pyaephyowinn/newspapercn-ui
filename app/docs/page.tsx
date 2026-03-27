@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+
+export const metadata: Metadata = {
+  title: "Getting Started",
+  description:
+    "Install and configure newspapercn-ui — a One Piece newspaper-themed shadcn/ui variant.",
+};
 import { TableOfContents } from "@/components/table-of-contents";
 
 const tocSections = [

@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+
+export const metadata: Metadata = {
+  title: "Components",
+  description:
+    "Browse all newspapercn-ui components — 10 custom One Piece components and 13 base components with newspaper variants.",
+};
 import { Separator } from "@/components/ui/separator";
 import {
   getComponentsByCategory,

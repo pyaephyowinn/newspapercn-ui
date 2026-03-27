@@ -15,9 +15,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "newspapercn-ui",
+  metadataBase: new URL("https://newspapercn-ui.vercel.app"),
+  title: {
+    default: "newspapercn-ui",
+    template: "%s — newspapercn-ui",
+  },
   description:
-    "A shadcn/ui variant with a One Piece newspaper theme — Grand Line Gazette",
+    "A One Piece newspaper-themed component library built on shadcn/ui. 10 custom components, 13 newspaper variants, OKLCH tokens.",
+  openGraph: {
+    title: "newspapercn-ui",
+    description:
+      "A One Piece newspaper-themed component library built on shadcn/ui.",
+    url: "https://newspapercn-ui.vercel.app",
+    siteName: "newspapercn-ui",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
