@@ -140,9 +140,9 @@ export default function Home() {
                 <p className="text-xs text-muted-foreground font-sans uppercase tracking-wider mb-2">
                   Quick Installation
                 </p>
-                <div className="flex items-center gap-2 rounded-sm border border-border bg-background px-4 py-2.5 font-mono text-sm mb-4">
+                <div className="flex items-center gap-2 rounded-sm border border-border bg-background px-3 sm:px-4 py-2.5 font-mono text-xs sm:text-sm mb-4">
                   <span className="text-muted-foreground select-none">$</span>
-                  <code className="flex-1 text-left overflow-x-auto">
+                  <code className="flex-1 text-left overflow-x-auto whitespace-nowrap">
                     npx shadcn@latest add
                     https://newspapercn-ui.vercel.app/r/newspaper-theme.json
                   </code>

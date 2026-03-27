@@ -53,19 +53,19 @@ const ColumnLayout = React.forwardRef<HTMLDivElement, ColumnLayoutProps>(
       <div
         ref={ref}
         className={cn(
-          "font-body leading-relaxed",
+          "font-body leading-relaxed [column-count:var(--col-count)] max-md:[column-count:1]",
           justified && "text-justify [hyphens:auto]",
           dropCap &&
             "[&>p:first-of-type]:first-letter:text-5xl [&>p:first-of-type]:first-letter:font-serif [&>p:first-of-type]:first-letter:font-bold [&>p:first-of-type]:first-letter:float-left [&>p:first-of-type]:first-letter:mr-2 [&>p:first-of-type]:first-letter:leading-none [&>p:first-of-type]:first-letter:mt-1",
           className
         )}
         style={{
-          columnCount: columns,
+          "--col-count": columns,
           columnGap: gapSizes[gap],
           columnRule: ruleValue,
           columnFill: balanceColumns ? "balance" : "auto",
           ...style,
-        }}
+        } as React.CSSProperties}
         {...props}
       >
         {children}

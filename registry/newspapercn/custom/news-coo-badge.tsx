@@ -78,7 +78,7 @@ const NewsCooBadge = React.forwardRef<HTMLDivElement, NewsCooBadgeProps>(
       count !== undefined && count > maxCount ? `${maxCount}+` : count;
 
     return (
-      <div ref={ref} className={cn("relative inline-flex", className)} {...props}>
+      <div ref={ref} className={cn("relative inline-flex max-w-full", className)} {...props}>
         {children}
         {shouldShow && (
           <span

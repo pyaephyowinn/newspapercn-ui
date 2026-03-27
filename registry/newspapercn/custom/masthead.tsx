@@ -70,9 +70,9 @@ const Masthead = React.forwardRef<HTMLElement, MastheadProps>(
             <h1
               className={cn(
                 "font-serif font-black tracking-wide uppercase leading-none",
-                variant === "broadsheet" && "text-5xl md:text-7xl",
-                variant === "tabloid" && "text-4xl md:text-5xl",
-                variant === "compact" && "text-2xl md:text-3xl"
+                variant === "broadsheet" && "text-3xl sm:text-5xl md:text-7xl",
+                variant === "tabloid" && "text-2xl sm:text-4xl md:text-5xl",
+                variant === "compact" && "text-xl sm:text-2xl md:text-3xl"
               )}
             >
               {title}

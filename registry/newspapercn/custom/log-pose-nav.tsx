@@ -100,7 +100,7 @@ const LogPoseNav = React.forwardRef<HTMLElement, LogPoseNavProps>(
       <nav
         ref={ref}
         className={cn(
-          "flex items-center gap-1 font-serif text-sm",
+          "flex flex-wrap justify-center items-center gap-1 font-serif text-sm",
           className
         )}
         {...props}
@@ -122,7 +122,7 @@ const LogPoseNav = React.forwardRef<HTMLElement, LogPoseNavProps>(
               {item.label}
             </a>
             {i < items.length - 1 && (
-              <span className="text-muted-foreground/40 select-none">→</span>
+              <span className="text-muted-foreground/40 select-none hidden sm:inline">→</span>
             )}
           </React.Fragment>
         ))}

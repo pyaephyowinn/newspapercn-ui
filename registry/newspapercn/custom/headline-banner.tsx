@@ -60,14 +60,14 @@ const HeadlineBanner = React.forwardRef<HTMLDivElement, HeadlineBannerProps>(
           {icon && <span className="shrink-0">{icon}</span>}
 
           {/* Content */}
-          <div className="flex items-baseline gap-2 flex-1 min-w-0">
+          <div className="flex items-baseline gap-2 flex-1 min-w-0 flex-wrap">
             <span className="font-black text-lg tracking-wide uppercase shrink-0 -rotate-1">
               {prefix}
             </span>
             <span
               className={cn(
-                "font-bold truncate",
-                variant === "ticker" && "whitespace-nowrap"
+                "font-bold",
+                variant === "ticker" && "whitespace-nowrap truncate"
               )}
             >
               {headline}
