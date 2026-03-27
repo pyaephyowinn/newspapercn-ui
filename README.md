@@ -6,8 +6,7 @@ Cream parchment backgrounds, serif typography, sharp editorial corners, navy/sep
 
 [Live Demo](https://newspapercn-ui.vercel.app) | [Registry](https://newspapercn-ui.vercel.app/r/registry.json)
 
-![Light Mode](public/screenshots/light.png)
-![Dark Mode](public/screenshots/dark.png)
+![Demo](public/screenshots/landing.png)
 
 ## Quick Start
 
