@@ -8,6 +8,8 @@ export interface ComponentDoc {
   installCommand?: string;
   variants?: { name: string; description: string }[];
   props?: { name: string; type: string; default?: string; description: string }[];
+  shadcnSlug?: string;
+  radixSlug?: string;
 }
 
 export const componentDocs: ComponentDoc[] = [
@@ -103,6 +105,7 @@ export const componentDocs: ComponentDoc[] = [
     description: "Data table for pirate bounties with Berry currency formatting, rank medals, and status badges.",
     category: "custom",
     installCommand: "npx shadcn@latest add https://newspapercn-ui.vercel.app/r/bounty-table.json",
+    shadcnSlug: "table",
     props: [
       { name: "entries", type: "BountyEntry[]", description: "Array of bounty entries" },
       { name: "title", type: "string", description: "Table title" },
@@ -142,6 +145,8 @@ export const componentDocs: ComponentDoc[] = [
     slug: "accordion",
     description: "Collapsible content sections. Newspaper variant adds serif triggers and +/- toggle.",
     category: "base-variant",
+    shadcnSlug: "accordion",
+    radixSlug: "accordion",
     variants: [
       { name: "default", description: "Standard accordion with chevron icons" },
       { name: "newspaper", description: "Serif triggers, uppercase tracking, +/− toggle" },
@@ -152,6 +157,7 @@ export const componentDocs: ComponentDoc[] = [
     slug: "alert",
     description: "Alert messages for important information.",
     category: "base-variant",
+    shadcnSlug: "alert",
     variants: [
       { name: "default", description: "Standard alert" },
       { name: "destructive", description: "Error/warning alert" },
@@ -164,6 +170,7 @@ export const componentDocs: ComponentDoc[] = [
     slug: "badge",
     description: "Small status indicators and labels.",
     category: "base-variant",
+    shadcnSlug: "badge",
     variants: [
       { name: "default", description: "Primary colored badge" },
       { name: "secondary", description: "Secondary colored badge" },
@@ -178,6 +185,7 @@ export const componentDocs: ComponentDoc[] = [
     slug: "button",
     description: "Clickable button element with multiple variants.",
     category: "base-variant",
+    shadcnSlug: "button",
     variants: [
       { name: "default", description: "Primary navy button" },
       { name: "secondary", description: "Sepia secondary button" },
@@ -194,6 +202,7 @@ export const componentDocs: ComponentDoc[] = [
     slug: "card",
     description: "Container for grouping content.",
     category: "base-variant",
+    shadcnSlug: "card",
     variants: [
       { name: "default", description: "Standard card with ring border" },
       { name: "article", description: "Left border accent, no ring" },
@@ -205,6 +214,8 @@ export const componentDocs: ComponentDoc[] = [
     slug: "checkbox",
     description: "Toggle checkbox input.",
     category: "base-variant",
+    shadcnSlug: "checkbox",
+    radixSlug: "checkbox",
     variants: [
       { name: "default", description: "Standard rounded checkbox" },
       { name: "ballot", description: "Sharp square, serif checkmark, thick border" },
@@ -215,6 +226,7 @@ export const componentDocs: ComponentDoc[] = [
     slug: "input",
     description: "Text input field.",
     category: "base-variant",
+    shadcnSlug: "input",
     variants: [
       { name: "default", description: "Full border input" },
       { name: "editorial", description: "Bottom-border only, serif placeholder" },
@@ -225,6 +237,7 @@ export const componentDocs: ComponentDoc[] = [
     slug: "pagination",
     description: "Page navigation controls.",
     category: "base-variant",
+    shadcnSlug: "pagination",
     variants: [
       { name: "default", description: "Standard pagination with chevrons" },
       { name: "editorial", description: "Serif numbers, underline active, guillemets" },
@@ -235,6 +248,8 @@ export const componentDocs: ComponentDoc[] = [
     slug: "progress",
     description: "Progress indicator bar.",
     category: "base-variant",
+    shadcnSlug: "progress",
+    radixSlug: "progress",
     variants: [
       { name: "default", description: "Rounded progress bar" },
       { name: "inkfill", description: "Striped hatched track, dark ink fill" },
@@ -245,6 +260,8 @@ export const componentDocs: ComponentDoc[] = [
     slug: "select",
     description: "Dropdown select input.",
     category: "base-variant",
+    shadcnSlug: "select",
+    radixSlug: "select",
     variants: [
       { name: "default", description: "Standard select trigger" },
       { name: "classified", description: "Dashed border, serif font, classified-ad style" },
@@ -255,6 +272,8 @@ export const componentDocs: ComponentDoc[] = [
     slug: "separator",
     description: "Visual divider between content sections.",
     category: "base-variant",
+    shadcnSlug: "separator",
+    radixSlug: "separator",
     variants: [
       { name: "default", description: "Thin line" },
       { name: "thick", description: "2px solid line" },
@@ -268,6 +287,7 @@ export const componentDocs: ComponentDoc[] = [
     slug: "skeleton",
     description: "Loading placeholder.",
     category: "base-variant",
+    shadcnSlug: "skeleton",
     variants: [
       { name: "default", description: "Pulsing rounded blob" },
       { name: "newsprint", description: "Horizontal text-line pattern" },
@@ -278,6 +298,7 @@ export const componentDocs: ComponentDoc[] = [
     slug: "textarea",
     description: "Multi-line text input.",
     category: "base-variant",
+    shadcnSlug: "textarea",
     variants: [
       { name: "default", description: "Full border textarea" },
       { name: "letter", description: "Lined-paper effect, serif font" },
@@ -286,26 +307,26 @@ export const componentDocs: ComponentDoc[] = [
 
   // ── Base Themed ──
   ...[
-    { name: "Avatar", slug: "avatar", description: "User avatar with image and fallback." },
-    { name: "Breadcrumb", slug: "breadcrumb", description: "Navigation breadcrumb trail." },
-    { name: "Calendar", slug: "calendar", description: "Date picker calendar grid." },
-    { name: "Context Menu", slug: "context-menu", description: "Right-click context menu." },
-    { name: "Dialog", slug: "dialog", description: "Modal dialog overlay." },
-    { name: "Dropdown Menu", slug: "dropdown-menu", description: "Dropdown menu trigger and content." },
-    { name: "Hover Card", slug: "hover-card", description: "Card that appears on hover." },
-    { name: "Label", slug: "label", description: "Form field label." },
-    { name: "Menubar", slug: "menubar", description: "Horizontal menu bar." },
-    { name: "Navigation Menu", slug: "navigation-menu", description: "Site navigation menu." },
-    { name: "Popover", slug: "popover", description: "Floating popover panel." },
-    { name: "Radio Group", slug: "radio-group", description: "Radio button group." },
-    { name: "Scroll Area", slug: "scroll-area", description: "Custom scrollable area." },
-    { name: "Sheet", slug: "sheet", description: "Side sheet/drawer panel." },
-    { name: "Sidebar", slug: "sidebar-component", description: "Application sidebar navigation." },
-    { name: "Sonner", slug: "sonner", description: "Toast notification system." },
-    { name: "Switch", slug: "switch", description: "Toggle switch input." },
-    { name: "Table", slug: "table", description: "Data table with rows and columns." },
-    { name: "Tabs", slug: "tabs", description: "Tabbed content panels." },
-    { name: "Tooltip", slug: "tooltip", description: "Informational tooltip on hover." },
+    { name: "Avatar", slug: "avatar", description: "User avatar with image and fallback.", shadcnSlug: "avatar", radixSlug: "avatar" },
+    { name: "Breadcrumb", slug: "breadcrumb", description: "Navigation breadcrumb trail.", shadcnSlug: "breadcrumb" },
+    { name: "Calendar", slug: "calendar", description: "Date picker calendar grid.", shadcnSlug: "calendar" },
+    { name: "Context Menu", slug: "context-menu", description: "Right-click context menu.", shadcnSlug: "context-menu", radixSlug: "context-menu" },
+    { name: "Dialog", slug: "dialog", description: "Modal dialog overlay.", shadcnSlug: "dialog", radixSlug: "dialog" },
+    { name: "Dropdown Menu", slug: "dropdown-menu", description: "Dropdown menu trigger and content.", shadcnSlug: "dropdown-menu", radixSlug: "dropdown-menu" },
+    { name: "Hover Card", slug: "hover-card", description: "Card that appears on hover.", shadcnSlug: "hover-card", radixSlug: "hover-card" },
+    { name: "Label", slug: "label", description: "Form field label.", shadcnSlug: "label", radixSlug: "label" },
+    { name: "Menubar", slug: "menubar", description: "Horizontal menu bar.", shadcnSlug: "menubar", radixSlug: "menubar" },
+    { name: "Navigation Menu", slug: "navigation-menu", description: "Site navigation menu.", shadcnSlug: "navigation-menu", radixSlug: "navigation-menu" },
+    { name: "Popover", slug: "popover", description: "Floating popover panel.", shadcnSlug: "popover", radixSlug: "popover" },
+    { name: "Radio Group", slug: "radio-group", description: "Radio button group.", shadcnSlug: "radio-group", radixSlug: "radio-group" },
+    { name: "Scroll Area", slug: "scroll-area", description: "Custom scrollable area.", shadcnSlug: "scroll-area", radixSlug: "scroll-area" },
+    { name: "Sheet", slug: "sheet", description: "Side sheet/drawer panel.", shadcnSlug: "sheet", radixSlug: "dialog" },
+    { name: "Sidebar", slug: "sidebar-component", description: "Application sidebar navigation.", shadcnSlug: "sidebar" },
+    { name: "Sonner", slug: "sonner", description: "Toast notification system.", shadcnSlug: "sonner" },
+    { name: "Switch", slug: "switch", description: "Toggle switch input.", shadcnSlug: "switch", radixSlug: "switch" },
+    { name: "Table", slug: "table", description: "Data table with rows and columns.", shadcnSlug: "table" },
+    { name: "Tabs", slug: "tabs", description: "Tabbed content panels.", shadcnSlug: "tabs", radixSlug: "tabs" },
+    { name: "Tooltip", slug: "tooltip", description: "Informational tooltip on hover.", shadcnSlug: "tooltip", radixSlug: "tooltip" },
   ].map((c) => ({ ...c, category: "base-themed" as ComponentCategory })),
 ];
 

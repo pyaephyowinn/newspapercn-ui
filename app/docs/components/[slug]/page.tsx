@@ -48,6 +48,7 @@ export default async function ComponentPage({
     ...(component.props && component.props.length > 0
       ? [{ id: "props", label: "Props" }]
       : []),
+    { id: "references", label: "References" },
   ];
 
   return (
@@ -182,6 +183,76 @@ export default async function ComponentPage({
             </section>
           </>
         )}
+
+        {/* References */}
+        <Separator />
+        <section className="space-y-3">
+          <h2 id="references" className="text-2xl font-bold scroll-mt-20">
+            References
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            {component.category === "custom" && !component.shadcnSlug &&
+              "This is a custom newspapercn-ui component."}
+            {component.category === "custom" && component.shadcnSlug && (
+              <>
+                This is a custom newspapercn-ui component built on{" "}
+                <a
+                  href={`https://ui.shadcn.com/docs/components/${component.shadcnSlug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  shadcn/ui {component.name}
+                </a>
+                .
+              </>
+            )}
+            {component.category === "base-variant" && (
+              <>
+                This component extends{" "}
+                <a
+                  href={`https://ui.shadcn.com/docs/components/${component.shadcnSlug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  shadcn/ui {component.name}
+                </a>{" "}
+                with newspaper-specific variants. See the shadcn/ui docs for the
+                full base API.
+              </>
+            )}
+            {component.category === "base-themed" && (
+              <>
+                This is a standard{" "}
+                <a
+                  href={`https://ui.shadcn.com/docs/components/${component.shadcnSlug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  shadcn/ui {component.name}
+                </a>{" "}
+                styled via the newspaper theme CSS variables. No code
+                modifications — see the original docs for full API and usage.
+              </>
+            )}
+          </p>
+          {component.radixSlug && (
+            <p className="text-sm text-muted-foreground">
+              See the{" "}
+              <a
+                href={`https://www.radix-ui.com/primitives/docs/components/${component.radixSlug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+              >
+                Radix UI
+              </a>{" "}
+              documentation for the full primitive API reference.
+            </p>
+          )}
+        </section>
       </div>
 
       {/* Right-side TOC */}
