@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/registry/newspapercn/custom/theme-toggle";
+import { CommandMenu } from "@/components/command-menu";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
@@ -23,27 +24,23 @@ export function SiteHeader() {
 
       <div className="mx-auto max-w-7xl px-4">
         {/* Main header row */}
-        <div className="flex h-14 items-center justify-between">
-          {/* Logo — editorial nameplate style */}
-          <Link href="/" className="group flex items-baseline gap-2">
-            <span className="font-serif text-xl font-black tracking-tight leading-none">
-              newspapercn
-            </span>
-            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-muted-foreground opacity-60 group-hover:opacity-100 transition-opacity">
-              ui
-            </span>
-          </Link>
+        <div className="flex h-14 items-center">
+          {/* Left group: Logo + nav */}
+          <div className="flex items-center gap-6">
+            <Link href="/" className="group flex items-baseline gap-2">
+              <span className="font-serif text-xl font-black tracking-tight leading-none">
+                newspapercn
+              </span>
+              <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-muted-foreground opacity-60 group-hover:opacity-100 transition-opacity">
+                ui
+              </span>
+            </Link>
 
-          {/* Desktop nav — editorial section tabs */}
-          <nav className="hidden items-center md:flex">
-            {navItems.map((item, i) => (
-              <React.Fragment key={item.href}>
-                {i > 0 && (
-                  <span className="mx-4 text-border select-none" aria-hidden>
-                    |
-                  </span>
-                )}
+            {/* Desktop nav */}
+            <nav className="hidden items-center gap-4 md:flex">
+              {navItems.map((item) => (
                 <Link
+                  key={item.href}
                   href={item.href}
                   className={cn(
                     "relative text-xs font-sans font-semibold uppercase tracking-[0.15em] transition-colors py-1",
@@ -54,12 +51,13 @@ export function SiteHeader() {
                 >
                   {item.label}
                 </Link>
-              </React.Fragment>
-            ))}
-          </nav>
+              ))}
+            </nav>
+          </div>
 
-          {/* Right side */}
-          <div className="flex items-center gap-1.5">
+          {/* Right group: Search + icons */}
+          <div className="ml-auto flex items-center gap-1.5">
+            <CommandMenu />
             <ThemeToggle size="sm" />
             <a
               href="https://github.com/pyaephyowinn/newspapercn-ui"
