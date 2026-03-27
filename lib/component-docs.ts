@@ -139,6 +139,17 @@ export const componentDocs: ComponentDoc[] = [
     ],
   },
 
+  {
+    name: "Theme Toggle",
+    slug: "theme-toggle",
+    description: "Dark/light mode toggle button with sun/moon icons and hydration-safe rendering.",
+    category: "custom",
+    installCommand: "npx shadcn@latest add https://newspapercn-ui.vercel.app/r/theme-toggle.json",
+    props: [
+      { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Button size" },
+    ],
+  },
+
   // ── Base with Variants ──
   {
     name: "Accordion",

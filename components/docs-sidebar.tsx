@@ -26,6 +26,7 @@ const sections: SidebarSection[] = [
       { label: "Bounty Table", href: "/docs/components/bounty-table" },
       { label: "Den Den Mushi", href: "/docs/components/den-den-mushi" },
       { label: "Poneglyph Code", href: "/docs/components/poneglyph-code" },
+      { label: "Theme Toggle", href: "/docs/components/theme-toggle" },
     ],
   },
   {

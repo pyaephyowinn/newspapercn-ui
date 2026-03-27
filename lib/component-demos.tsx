@@ -10,6 +10,7 @@ import { LogPoseNav } from "@/registry/newspapercn/custom/log-pose-nav";
 import { BountyTable } from "@/registry/newspapercn/custom/bounty-table";
 import { DenDenMushi } from "@/registry/newspapercn/custom/den-den-mushi";
 import { PoneglyphCode } from "@/registry/newspapercn/custom/poneglyph-code";
+import { ThemeToggle } from "@/registry/newspapercn/custom/theme-toggle";
 
 // Base components
 import { Button } from "@/components/ui/button";
@@ -270,6 +271,21 @@ export function BountyCard() {
   );
 }\`}
 />`,
+  },
+
+  "theme-toggle": {
+    demo: (
+      <div className="flex items-center gap-4">
+        <ThemeToggle size="sm" />
+        <ThemeToggle size="md" />
+        <ThemeToggle size="lg" />
+      </div>
+    ),
+    code: `<div className="flex items-center gap-4">
+  <ThemeToggle size="sm" />
+  <ThemeToggle size="md" />
+  <ThemeToggle size="lg" />
+</div>`,
   },
 
   // ══════════════════════════════
