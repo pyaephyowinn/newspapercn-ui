@@ -6,7 +6,7 @@ A shadcn/ui variant with a One Piece "World Economic Journal" newspaper theme �
 
 ## Tech Stack
 
-- **Next.js 15** (App Router) + **React 19** + **TypeScript**
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
 - **Tailwind CSS v4** (OKLCH color space)
 - **shadcn/ui** (radix-nova style) — base components, themed via CSS variables
 - **pnpm** — package manager
